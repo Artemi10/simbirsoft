@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
         var user = userRepository.findByEmail(logInDTO.email())
                 .orElseThrow(() -> new AuthenticationException("Пользователя не существует"));
         if (!user.getPassword().equals(logInDTO.password())){
-            throw new AuthenticationException("Введён неыерный логин или пароль");
+            throw new AuthenticationException("Введён неверный логин или пароль");
         }
     }
 }

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Service
 public interface NoteService {
-    List<Note> findUserNotes(long userId, Pageable pageable);
+    List<NoteDTO> findUserNotes(long userId, Pageable pageable);
     void addUserNote(long userId, NoteDTO noteDTO);
 }

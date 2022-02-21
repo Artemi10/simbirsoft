@@ -28,7 +28,9 @@
 .auth__form__error{
     text-align: center;
     color: 	#ff3333;
+    font-size: 20px;
 }
 .auth__form__btn{
+    font-size: 20px;
     width: 100%;
 }

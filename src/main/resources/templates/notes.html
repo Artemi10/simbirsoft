@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Notes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/notes.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{components/menu :: content}"></div>
+<div class="notes">
+    <div class="notes__container">
+        <div class="notes__list">
+            <div class="notes__list__header">Записки</div>
+            <div class="notes__list__table">
+                <th:block th:each="note : ${notes}">
+                    <div class="notes__list__table__note">
+                        <p class="notes__list__table__note__title" th:text="${note.title()}"></p>
+                        <p class="notes__list__table__note__text" th:text="${note.text()}"></p>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <span class="pagination__element">&laquo;</span>
+    <span class="pagination__element">1</span>
+    <span class="pagination__element active">2</span>
+    <span class="pagination__element">3</span>
+    <span class="pagination__element">4</span>
+    <span class="pagination__element">5</span>
+    <span class="pagination__element">6</span>
+    <span class="pagination__element">&raquo;</span>
+</div>
+</body>
+</html>

@@ -16,8 +16,10 @@ public class NoteServiceImpl implements NoteService {
     private final NoteRepository noteRepository;
 
     @Override
-    public List<Note> findUserNotes(long userId, Pageable pageable) {
-        return noteRepository.findAllByUserId(userId, pageable).toList();
+    public List<NoteDTO> findUserNotes(long userId, Pageable pageable) {
+        return noteRepository.findAllByUserId(userId, pageable).stream()
+                .map(NoteDTO::new)
+                .toList();
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.example.simbirsoft.entity.User;
 import com.example.simbirsoft.repository.NoteRepository;
 import com.example.simbirsoft.transfer.note.NoteDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +13,31 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class NoteServiceImpl implements NoteService {
+    private static final int PAGE_SIZE = 4;
     private final NoteRepository noteRepository;
 
     @Override
-    public List<NoteDTO> findUserNotes(long userId, Pageable pageable) {
+    public List<NoteDTO> findUserNotes(long userId, int page) {
+        var pageable = PageRequest.of(page, PAGE_SIZE);
         return noteRepository.findAllByUserId(userId, pageable).stream()
                 .map(NoteDTO::new)
                 .toList();
+    }
+
+    @Override
+    public List<NoteDTO> findUserNotes(long userId) {
+        return findUserNotes(userId, 0);
+    }
+
+    @Override
+    public int getPageAmount(long userId) {
+        var noteAmount = noteRepository.getUserNotesAmount(userId);
+        if (noteAmount > 0 && noteAmount % PAGE_SIZE == 0) {
+            return noteAmount / PAGE_SIZE;
+        }
+        else {
+            return noteAmount / PAGE_SIZE + 1;
+        }
     }
 
     @Override

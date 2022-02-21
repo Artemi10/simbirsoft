@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+    <nav class="deep-purple lighten-2">
+        <div class="nav-wrapper">
+            <p class="brand-logo" style="padding: 0 20px 0 20px;margin:0;font-size:30px;font-family:'Indie Flower',cursive;font-weight:bold;">devanmejia</p>
+            <ul class="right hide-on-small-and-down">
+                <li><a href="">На главную</a></li>
+                <li th:attr="class=${#httpServletRequest.requestURI == '/log-in' ? 'active' : ''}">
+                    <a th:style="${#httpServletRequest.requestURI == '/log-in' ?  'pointer-events: none;cursor: default;' : ''}"
+                       th:href="@{'/log-in'}">Вход</a>
+                </li>
+                <li th:attr="class=${#httpServletRequest.requestURI == '/sign-up' ? 'active' : ''}">
+                    <a th:style="${#httpServletRequest.requestURI == '/sign-up' ?  'pointer-events: none;cursor: default;' : ''}"
+                       th:href="@{'/sign-up'}">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

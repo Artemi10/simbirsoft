@@ -7,14 +7,14 @@
             <p class="brand-logo" style="padding: 0 20px 0 20px;margin:0;font-size:30px;font-family:'Indie Flower',cursive;font-weight:bold;">devanmejia</p>
             <ul class="right hide-on-small-and-down">
                 <li><a href="" style="font-size: 20px;">На главную</a></li>
-                <li th:attr="class=${#httpServletRequest.requestURI == '/log-in' ? 'active' : ''}">
-                    <a th:style="${#httpServletRequest.requestURI == '/log-in' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
-                       th:href="@{'/log-in'}">Вход</a>
+                <li th:attr="class=${#httpServletRequest.requestURI == '/auth/log-in' ? 'active' : ''}">
+                    <a th:style="${#httpServletRequest.requestURI == '/auth/log-in' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
+                       th:href="@{'/auth/log-in'}">Вход</a>
                 </li>
-                <li th:attr="class=${#httpServletRequest.requestURI == '/sign-up' ? 'active' : ''}">
+                <li th:attr="class=${#httpServletRequest.requestURI == '/auth/sign-up' ? 'active' : ''}">
                     <a style="font-size: 20px;"
-                       th:style="${#httpServletRequest.requestURI == '/sign-up' ?  'pointer-events: none;cursor: default;font-size: 20px;' : 'font-size: 20px;'}"
-                       th:href="@{'/sign-up'}">Регистрация</a>
+                       th:style="${#httpServletRequest.requestURI == '/auth/sign-up' ?  'pointer-events: none;cursor: default;font-size: 20px;' : 'font-size: 20px;'}"
+                       th:href="@{'/auth/sign-up'}">Регистрация</a>
                 </li>
             </ul>
         </div>

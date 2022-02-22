@@ -42,4 +42,10 @@ public class NoteController {
             return "create";
         }
     }
+
+    @GetMapping("/add/user/{userId}")
+    public String showCreateNoteForm(@PathVariable long userId, Model model) {
+        model.addAttribute("userId", userId);
+        return "create";
+    }
 }

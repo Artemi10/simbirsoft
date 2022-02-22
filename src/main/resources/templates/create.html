@@ -21,13 +21,13 @@
               th:method="'POST'" th:object="${requset}">
             <div class="create__form__field input-field">
                 <i class="material-icons prefix">border_color</i>
-                <input id="title" type="text" class="validate" th:name="title">
+                <input id="title" type="text" class="validate" th:name="title" maxlength="40">
                 <label for="title" data-error="wrong" data-success="right">Заголовок</label>
             </div>
             <div class="create__form__field input-field">
                 <i class="material-icons prefix">mail_outline</i>
-                <input id="text" type="text" class="validate" th:name="text">
-                <label for="text" data-error="wrong" data-success="right">Текст</label>
+                <textarea id="text" class="materialize-textarea" th:name="text" maxlength="254"></textarea>
+                <label for="text">Содержание</label>
             </div>
             <p class="create__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="create__form__btn waves-effect waves-light btn-large deep-purple lighten-2"

@@ -18,7 +18,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<NoteDTO> findUserNotes(long userId, int page) {
-        var pageable = PageRequest.of(page, PAGE_SIZE);
+        var pageable = PageRequest.of(page - 1, PAGE_SIZE);
         return noteRepository.findAllByUserId(userId, pageable).stream()
                 .map(NoteDTO::new)
                 .toList();

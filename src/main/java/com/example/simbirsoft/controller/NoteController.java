@@ -15,12 +15,13 @@ public class NoteController {
     private final NoteService noteService;
 
     @GetMapping("/user/{userId}")
-    public String findUserNotes(@PathVariable long userId, @RequestParam int page, Model model) {
+    public String findUserNotes(@PathVariable long userId, @RequestParam(defaultValue = "1") int page, Model model) {
         var notes = noteService.findUserNotes(userId, page);
         var pageAmount = noteService.getPageAmount(userId);
         model.addAttribute("notes", notes);
         model.addAttribute("pageAmount", pageAmount);
         model.addAttribute("currentPage", page);
+        model.addAttribute("userId", userId);
         return "notes";
     }
 
@@ -32,6 +33,7 @@ public class NoteController {
         model.addAttribute("notes", notes);
         model.addAttribute("pageAmount", pageAmount);
         model.addAttribute("currentPage", 1);
+        model.addAttribute("userId", userId);
         return "notes";
     }
 }

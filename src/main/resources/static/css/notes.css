@@ -67,3 +67,6 @@
     cursor: pointer;
     background-color: #b39ddb ;
 }
+.invisible{
+    visibility: hidden;
+}

@@ -33,14 +33,17 @@
     </div>
 </div>
 <div class="pagination">
-    <span class="pagination__element">&laquo;</span>
-    <span class="pagination__element">1</span>
-    <span class="pagination__element active">2</span>
-    <span class="pagination__element">3</span>
-    <span class="pagination__element">4</span>
-    <span class="pagination__element">5</span>
-    <span class="pagination__element">6</span>
-    <span class="pagination__element">&raquo;</span>
+    <a class="pagination__element" th:classappend="${currentPage > 1 ? '' : 'invisible'}"
+       th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${currentPage - 1})}">&laquo;</a>
+    <a class="pagination__element"
+          th:each="i : ${#numbers.sequence(1, pageAmount, 1)}"
+          th:text="${i}"
+          th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${i})}"
+          th:classappend="${i == currentPage ? 'active' : ''}">
+    </a>
+    <a class="pagination__element"
+       th:classappend="${currentPage < pageAmount ? '' : 'invisible'}"
+       th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${currentPage + 1})}">&raquo;</a>
 </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.example.simbirsoft.transfer.note;
 
-import com.example.simbirsoft.entity.Note;
 import com.example.simbirsoft.exception.ValidatorException;
 
 import static com.example.simbirsoft.transfer.Validator.isTextFieldValid;

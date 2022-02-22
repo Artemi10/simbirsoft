@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidatorTest {
 
     @Test
-    public void invalidPasswordTest() {
+    public void invalidTextFieldTest() {
         assertFalse(isTextFieldValid(null));
         assertFalse(isTextFieldValid(""));
         assertFalse(isTextFieldValid("   "));
     }
 
     @Test
-    public void validPasswordTest() {
+    public void validTextFieldTest() {
         assertTrue(isTextFieldValid("123456"));
         assertTrue(isTextFieldValid("qwerty"));
         assertTrue(isTextFieldValid("asdfg"));

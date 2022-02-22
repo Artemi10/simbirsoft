@@ -20,7 +20,12 @@
 <div class="notes">
     <div class="notes__container">
         <div class="notes__list">
-            <div class="notes__list__header">Записки</div>
+            <div class="notes__list__header">
+                <p class="notes__list__header__text">Записки</p>
+                <p class="notes__list__header__add">
+                    <a th:href="@{/add/note/user/{userId}(userId=${userId})}"><i class="material-icons small">add</i></a>
+                </p>
+            </div>
             <div class="notes__list__table">
                 <th:block th:each="note : ${notes}">
                     <div class="notes__list__table__note">

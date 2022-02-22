@@ -1,9 +1,26 @@
 package com.example.simbirsoft.transfer.note;
 
 import com.example.simbirsoft.entity.Note;
+import com.example.simbirsoft.exception.ValidatorException;
+
+import static com.example.simbirsoft.transfer.Validator.isTextFieldValid;
 
 public record NoteDTO(String title, String text) {
-    public NoteDTO(Note note) {
-        this(note.getTitle(), note.getText());
+
+    public void check() {
+        checkTitle();
+        checkText();
+    }
+
+    private void checkTitle() {
+        if (!isTextFieldValid(title)) {
+            throw new ValidatorException("Введён некорректный заголовок");
+        }
+    }
+
+    private void checkText() {
+        if (!isTextFieldValid(text)) {
+            throw new ValidatorException("Введён некорректный текст");
+        }
     }
 }

@@ -1,9 +1,9 @@
 package com.example.simbirsoft.controller;
 
-import com.example.simbirsoft.transfer.auth.LogInDTO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PageController {
@@ -19,7 +19,13 @@ public class PageController {
     }
 
     @GetMapping("/log-in")
-    public String showLogInPage(@ModelAttribute LogInDTO logInDTO){
+    public String showLogInPage(){
         return "log-in";
+    }
+
+    @GetMapping("/add/note/user/{userId}")
+    public String showCreateNoteForm(@PathVariable long userId, Model model) {
+        model.addAttribute("userId", userId);
+        return "create";
     }
 }

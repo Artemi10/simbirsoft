@@ -1,8 +1,8 @@
-package com.example.simbirsoft.transfer.auth;
+package com.example.simbirsoft.transfer;
 
 public class Validator {
 
-    public static boolean isPasswordValid(String password){
+    public static boolean isTextFieldValid(String password){
         return password != null && !password.isBlank();
     }
 

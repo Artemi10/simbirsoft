@@ -19,14 +19,15 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public List<NoteDTO> findUserNotes(long userId, int page) {
         var pageable = PageRequest.of(page - 1, PAGE_SIZE);
-        return noteRepository.findAllByUserId(userId, pageable).stream()
-                .map(NoteDTO::new)
+        return noteRepository
+                .findAllByUserIdOrderByIdDesc(userId, pageable).stream()
+                .map(note -> new NoteDTO(note.getTitle(), note.getText()))
                 .toList();
     }
 
     @Override
     public List<NoteDTO> findUserNotes(long userId) {
-        return findUserNotes(userId, 0);
+        return findUserNotes(userId, 1);
     }
 
     @Override
@@ -42,6 +43,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public void addUserNote(long userId, NoteDTO noteDTO) {
+        noteDTO.check();
         var user = User.builder().id(userId).build();
         var note = Note.builder()
                 .text(noteDTO.text())

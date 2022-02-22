@@ -61,7 +61,7 @@
 }
 .active {
     background-color: #9575cd;
-    color: white;
+    color: #ffffff;
 }
 .pagination__element:hover:not(.active) {
     cursor: pointer;
@@ -69,4 +69,32 @@
 }
 .invisible{
     visibility: hidden;
+}
+.notes__list__header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.notes__list__header__text{
+    margin: 0;
+    padding: 0;
+}
+.notes__list__header__add{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.notes__list__header__add a{
+    display: block;
+    color: #ffffff;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+}
+.notes__list__header__add a:hover{
+    cursor: pointer;
+    color: #d1c4e9;
 }

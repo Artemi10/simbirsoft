@@ -2,23 +2,23 @@ package com.example.simbirsoft.transfer.auth;
 
 import org.junit.jupiter.api.Test;
 
-import static com.example.simbirsoft.transfer.auth.Validator.*;
+import static com.example.simbirsoft.transfer.Validator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
 
     @Test
     public void invalidPasswordTest() {
-        assertFalse(isPasswordValid(null));
-        assertFalse(isPasswordValid(""));
-        assertFalse(isPasswordValid("   "));
+        assertFalse(isTextFieldValid(null));
+        assertFalse(isTextFieldValid(""));
+        assertFalse(isTextFieldValid("   "));
     }
 
     @Test
     public void validPasswordTest() {
-        assertTrue(isPasswordValid("123456"));
-        assertTrue(isPasswordValid("qwerty"));
-        assertTrue(isPasswordValid("asdfg"));
+        assertTrue(isTextFieldValid("123456"));
+        assertTrue(isTextFieldValid("qwerty"));
+        assertTrue(isTextFieldValid("asdfg"));
     }
 
     @Test

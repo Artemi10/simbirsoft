@@ -1,7 +1,7 @@
 package com.example.simbirsoft.service.user;
 
 import com.example.simbirsoft.entity.User;
-import com.example.simbirsoft.exception.AuthenticationException;
+import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.repository.UserRepository;
 import com.example.simbirsoft.transfer.auth.LogInDTO;
 import com.example.simbirsoft.transfer.auth.SignUpDTO;
@@ -24,16 +24,16 @@ public class UserServiceImpl implements UserService{
                     .build();
             userRepository.save(user);
         }
-        else throw new AuthenticationException("Пользователь уже существует");
+        else throw new ValidatorException("Пользователь уже существует");
     }
 
     @Override
     public void logIn(LogInDTO logInDTO) {
         logInDTO.check();
         var user = userRepository.findByEmail(logInDTO.email())
-                .orElseThrow(() -> new AuthenticationException("Пользователя не существует"));
+                .orElseThrow(() -> new ValidatorException("Пользователя не существует"));
         if (!user.getPassword().equals(logInDTO.password())){
-            throw new AuthenticationException("Введён неверный логин или пароль");
+            throw new ValidatorException("Введён неверный логин или пароль");
         }
     }
 }

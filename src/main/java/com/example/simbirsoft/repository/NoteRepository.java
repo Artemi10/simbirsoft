@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
-    Page<Note> findAllByUserId(long userId, Pageable pageable);
+    Page<Note> findAllByUserIdOrderByIdDesc(long userId, Pageable pageable);
     @Query("""
               SELECT count(note)
               FROM Note note

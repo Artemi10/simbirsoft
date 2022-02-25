@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void signUp(SignUpDTO signUpDTO) {
+    public void createUser(SignUpDTO signUpDTO) {
         signUpDTO.check();
         var userOptional = userRepository.findByEmail(signUpDTO.email());
         if (userOptional.isEmpty()){

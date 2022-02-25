@@ -17,7 +17,7 @@ public class UserController {
     @PostMapping
     public String createUser(@ModelAttribute SignUpDTO request, Model model){
         try {
-            userService.signUp(request);
+            userService.createUser(request);
             return "log-in";
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());

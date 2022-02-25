@@ -17,8 +17,7 @@
 <div th:insert="~{components/menu :: content}"></div>
 <div class="auth">
     <div class="auth__container">
-        <form class="auth__form" th:action="@{/users/log-in}"
-              method="POST" th:object="${requset}">
+        <form class="auth__form" method="POST" th:object="${requset}">
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">mail_outline</i>
                 <input id="email" type="email" class="validate" th:name="email">

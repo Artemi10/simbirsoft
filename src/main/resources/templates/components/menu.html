@@ -11,13 +11,13 @@
                        th:href="@{'/'}" style="font-size: 20px;">На главную</a>
                 </li>
                 <li sec:authorize="isAuthenticated()"
-                    th:attr="class=${#httpServletRequest.requestURI == '/notes/user/1' ? 'active' : ''}">
-                    <a th:style="${#httpServletRequest.requestURI == '/notes/user/1' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
-                       th:href="@{'/notes/user/1'}" style="font-size: 20px;">Записки</a>
+                    th:attr="class=${#httpServletRequest.requestURI == '/notes' ? 'active' : ''}">
+                    <a th:style="${#httpServletRequest.requestURI == '/notes' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
+                       th:href="@{'/notes'}" style="font-size: 20px;">Записки</a>
                 </li>
                 <li sec:authorize="isAuthenticated()"
-                    th:attr="class=${#httpServletRequest.requestURI == '/log-out' ? 'active' : ''}">
-                    <a th:style="${#httpServletRequest.requestURI == '/log-out' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
+                    th:attr="class=${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">
+                    <a th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
                        th:href="@{'/log-out'}" style="font-size: 20px;">Выход</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()"

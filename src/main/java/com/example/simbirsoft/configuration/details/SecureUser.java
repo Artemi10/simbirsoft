@@ -8,11 +8,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 
-public record SecureUser(String email, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled)
+public record SecureUser(long id, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled)
         implements UserDetails {
 
     public SecureUser(User user) {
-       this(user.getEmail(), user.getPassword(), Collections.emptyList(), true);
+       this(user.getId(), user.getEmail(), user.getPassword(), Collections.emptyList(), true);
     }
 
     @Override
@@ -48,9 +48,5 @@ public record SecureUser(String email, String password, Collection<? extends Gra
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public static SecureUser empty(){
-        return new SecureUser(null, null, null, false);
     }
 }

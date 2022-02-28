@@ -23,7 +23,7 @@
             <div class="notes__list__header">
                 <p class="notes__list__header__text">Записки</p>
                 <p class="notes__list__header__add">
-                    <a th:href="@{/notes/add/user/{userId}(userId=${userId})}"><i class="material-icons small">add</i></a>
+                    <a th:href="@{/notes/add}"><i class="material-icons small">add</i></a>
                 </p>
             </div>
             <div th:if="${!notes.isEmpty()}" class="notes__list__table">

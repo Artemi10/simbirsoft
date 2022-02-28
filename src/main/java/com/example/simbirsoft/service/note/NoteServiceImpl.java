@@ -17,22 +17,22 @@ public class NoteServiceImpl implements NoteService {
     private final NoteRepository noteRepository;
 
     @Override
-    public List<NoteDTO> findUserNotes(long userId, int page) {
+    public List<NoteDTO> findUserNotes(String email, int page) {
         var pageable = PageRequest.of(page - 1, PAGE_SIZE);
         return noteRepository
-                .findAllByUserIdOrderByIdDesc(userId, pageable).stream()
+                .findAllByUserEmail(email, pageable).stream()
                 .map(note -> new NoteDTO(note.getTitle(), note.getText()))
                 .toList();
     }
 
     @Override
-    public List<NoteDTO> findUserNotes(long userId) {
-        return findUserNotes(userId, 1);
+    public List<NoteDTO> findUserNotes(String email) {
+        return findUserNotes(email, 1);
     }
 
     @Override
-    public int getPageAmount(long userId) {
-        var noteAmount = noteRepository.getUserNotesAmount(userId);
+    public int getPageAmount(String email) {
+        var noteAmount = noteRepository.getUserNotesAmount(email);
         if (noteAmount > 0 && noteAmount % PAGE_SIZE == 0) {
             return noteAmount / PAGE_SIZE;
         }
@@ -42,9 +42,9 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void addUserNote(long userId, NoteDTO noteDTO) {
+    public void addUserNote(long id, NoteDTO noteDTO) {
         noteDTO.check();
-        var user = User.builder().id(userId).build();
+        var user = User.builder().id(id).build();
         var note = Note.builder()
                 .text(noteDTO.text())
                 .title(noteDTO.title())

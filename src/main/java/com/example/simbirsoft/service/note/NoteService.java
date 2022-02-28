@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public interface NoteService {
-    List<NoteDTO> findUserNotes(long userId, int page);
-    List<NoteDTO> findUserNotes(long userId);
-    int getPageAmount(long userId);
-    void addUserNote(long userId, NoteDTO noteDTO);
+    List<NoteDTO> findUserNotes(String email, int page);
+    List<NoteDTO> findUserNotes(String email);
+    int getPageAmount(String email);
+    void addUserNote(long id, NoteDTO noteDTO);
 }

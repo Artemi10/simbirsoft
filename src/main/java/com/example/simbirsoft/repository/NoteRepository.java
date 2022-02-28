@@ -8,10 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
-    Page<Note> findAllByUserIdOrderByIdDesc(long userId, Pageable pageable);
     @Query("""
-              SELECT count(note)
-              FROM Note note
-              WHERE note.user.id = :userId""")
-    int getUserNotesAmount(long userId);
+              SELECT note FROM Note note
+              WHERE note.user.email = :email
+              ORDER BY note.user.email DESC
+              """)
+    Page<Note> findAllByUserEmail(String email, Pageable pageable);
+    @Query("""
+              SELECT count(note) FROM Note note
+              WHERE note.user.email = :email""")
+    int getUserNotesAmount(String email);
 }

@@ -21,22 +21,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/css/*").permitAll()
-                .antMatchers("/auth/*", "/auth/log-in/*", "/user").not().authenticated()
-                .anyRequest().authenticated().and()
-                .csrf().disable()
+        http
+                .authorizeRequests()
+                    .antMatchers("/", "/css/*").permitAll()
+                    .antMatchers("/auth/*", "/auth/log-in/*", "/user").not().authenticated()
+                    .anyRequest().authenticated()
+                .and().csrf()
+                    .disable()
                 .formLogin()
-                .defaultSuccessUrl("/")
-                .loginPage("/auth/log-in")
-                .failureUrl("/auth/log-in?error=true")
-                .usernameParameter("email")
-                .defaultSuccessUrl("/")
-                .and()
-                .logout()
-                .permitAll()
-                .deleteCookies()
-                .logoutUrl("/log-out");
+                    .defaultSuccessUrl("/")
+                    .loginPage("/auth/log-in")
+                    .failureUrl("/auth/log-in?error=true")
+                    .usernameParameter("email")
+                    .defaultSuccessUrl("/")
+                .and().logout()
+                    .permitAll()
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .deleteCookies("JSESSIONID")
+                    .logoutUrl("/log-out");
     }
 
     @Override

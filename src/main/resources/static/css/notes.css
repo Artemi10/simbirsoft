@@ -41,6 +41,13 @@
     font-weight: bold;
     padding: 10px 30px 10px 30px;
 }
+.notes__list__table_empty{
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 30px 10px 30px;
+    background-color: #ffffff;
+}
 .notes__list__table__note__text{
     margin: 0;
     font-size: 20px;

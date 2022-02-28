@@ -26,7 +26,7 @@
                     <a th:href="@{/notes/add/user/{userId}(userId=${userId})}"><i class="material-icons small">add</i></a>
                 </p>
             </div>
-            <div class="notes__list__table">
+            <div th:if="${!notes.isEmpty()}" class="notes__list__table">
                 <th:block th:each="note : ${notes}">
                     <div class="notes__list__table__note">
                         <p class="notes__list__table__note__title" th:text="${note.title()}"></p>
@@ -34,6 +34,7 @@
                     </div>
                 </th:block>
             </div>
+            <p th:if="${notes.isEmpty()}" class="notes__list__table_empty">Список пуст</p>
         </div>
     </div>
 </div>

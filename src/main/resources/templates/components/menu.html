@@ -18,7 +18,7 @@
                 <li sec:authorize="isAuthenticated()"
                     th:attr="class=${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">
                     <a th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
-                       th:href="@{'/log-out'}" style="font-size: 20px;">Выход</a>
+                       th:href="@{'/auth/log-out'}" style="font-size: 20px;">Выход</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()"
                     th:attr="class=${#httpServletRequest.requestURI == '/auth/sign-up' ? 'active' : ''}">

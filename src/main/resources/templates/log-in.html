@@ -28,6 +28,12 @@
                 <input id="password" type="password" class="validate" th:name="password">
                 <label for="password" data-error="wrong" data-success="right">Пароль</label>
             </div>
+            <p class="auth__form__remember-me">
+                <label>
+                    <input type="checkbox" name="remember-me"/>
+                    <span class="auth__form__remember-me__text">Remember me</span>
+                </label>
+            </p>
             <p class="auth__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="auth__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
                     type="submit">Вход</button>

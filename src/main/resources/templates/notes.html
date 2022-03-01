@@ -29,7 +29,17 @@
             <div th:if="${!notes.isEmpty()}" class="notes__list__table">
                 <th:block th:each="note : ${notes}">
                     <div class="notes__list__table__note">
-                        <p class="notes__list__table__note__title" th:text="${note.title()}"></p>
+                        <p class="notes__list__table__note__title">
+                            <span th:text="${note.title()}"></span>
+                            <a class="notes__list__table__note__action hidden"
+                               th:href="@{/}">
+                                <i class="material-icons prefix notes__list__table__note__icon">edit</i>
+                            </a>
+                            <a class="notes__list__table__note__action hidden"
+                               th:href="@{/}">
+                                <i class="material-icons prefix notes__list__table__note__icon">delete</i>
+                            </a>
+                        </p>
                         <p class="notes__list__table__note__text" th:text="${note.text()}"></p>
                     </div>
                 </th:block>
@@ -51,5 +61,6 @@
        th:classappend="${currentPage < pageAmount ? '' : 'invisible'}"
        th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${currentPage + 1})}">&raquo;</a>
 </div>
+<script type="text/javascript" th:src="@{/js/notes.js}"></script>
 </body>
 </html>

@@ -53,6 +53,13 @@
     font-size: 20px;
     padding: 0 30px 10px 30px;
 }
+.notes__list__table__note__icon {
+    color: #000000;
+    cursor: pointer;
+}
+.notes__list__table__note__icon:hover{
+    color: #9575cd;
+}
 .pagination {
     background-color: #d1c4e9;
     display: flex;
@@ -104,4 +111,7 @@
 .notes__list__header__add a:hover{
     cursor: pointer;
     color: #d1c4e9;
+}
+.hidden{
+    visibility: hidden;
 }

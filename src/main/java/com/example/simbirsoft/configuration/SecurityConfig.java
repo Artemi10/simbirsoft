@@ -28,15 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequestsConfig -> authorizeRequestsConfig
-                        .antMatchers("/", "/css/*").permitAll()
+                        .antMatchers("/", "/css/*", "/js/*").permitAll()
                         .antMatchers("/auth/*", "/auth/log-in/*", "/user").not().authenticated()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfig -> formLoginConfig
                         .defaultSuccessUrl("/")
                         .loginPage("/auth/log-in")
                         .failureUrl("/auth/log-in?error=true")
-                        .usernameParameter("email")
-                        .defaultSuccessUrl("/"))
+                        .usernameParameter("email"))
                 .logout(logoutConfig -> logoutConfig
                         .permitAll()
                         .invalidateHttpSession(true)

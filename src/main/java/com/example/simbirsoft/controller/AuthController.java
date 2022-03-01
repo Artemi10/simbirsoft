@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @GetMapping("/sign-up")
-    public String showSignUpPage(){
-        return "sign-up";
-    }
-
     @GetMapping("/log-in")
     public String showLogInPage(@RequestParam(defaultValue = "false") boolean error, Model model){
         if (error){
             var errorMessage = "Введён неверный логин или пароль";
             model.addAttribute("error", errorMessage);
         }
-        return "log-in";
+        return "/log-in";
+    }
+
+    @GetMapping("/sign-up")
+    public String showSignUpPage(){
+        return "/sign-up";
     }
 }

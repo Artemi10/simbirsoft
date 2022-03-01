@@ -18,10 +18,10 @@ public class UserController {
     public String createUser(@ModelAttribute SignUpDTO request, Model model){
         try {
             userService.createUser(request);
-            return "redirect:/log-in";
+            return "redirect:/auth/log-in";
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());
-            return "sign-up";
+            return "/sign-up";
         }
     }
 }

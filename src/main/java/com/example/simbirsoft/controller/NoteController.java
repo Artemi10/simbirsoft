@@ -41,7 +41,7 @@ public class NoteController {
         }
     }
 
-    @PatchMapping("/{noteId}")
+    @PostMapping("/{noteId}/update")
     public String updateUserNote(Authentication authentication, @PathVariable long noteId, @ModelAttribute RequestNoteDTO request, Model model) {
         try {
             var email = ((SecureUser) authentication.getPrincipal()).email();
@@ -53,7 +53,7 @@ public class NoteController {
         }
     }
 
-    @DeleteMapping("/{noteId}")
+    @GetMapping("/{noteId}/delete")
     public String deleteUserNote(Authentication authentication, @PathVariable long noteId) {
         var email = ((SecureUser) authentication.getPrincipal()).email();
         noteService.deleteUserNote(noteId, email);

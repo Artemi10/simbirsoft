@@ -4,7 +4,7 @@ import com.example.simbirsoft.exception.ValidatorException;
 
 import static com.example.simbirsoft.transfer.Validator.isTextFieldValid;
 
-public record NoteDTO(String title, String text) {
+public record RequestNoteDTO(String title, String text) {
 
     public void check() {
         checkTitle();

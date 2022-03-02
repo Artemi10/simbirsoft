@@ -4,7 +4,7 @@ import com.example.simbirsoft.configuration.details.SecureUser;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.note.NoteService;
-import com.example.simbirsoft.transfer.note.NoteDTO;
+import com.example.simbirsoft.transfer.note.RequestNoteDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class NoteController {
     }
 
     @PostMapping
-    public String createUserNote(Authentication authentication, @ModelAttribute NoteDTO request, Model model) {
+    public String createUserNote(Authentication authentication, @ModelAttribute RequestNoteDTO request, Model model) {
         try{
             var id = ((SecureUser) authentication.getPrincipal()).id();
             noteService.addUserNote(id, request);
@@ -42,7 +42,7 @@ public class NoteController {
     }
 
     @PatchMapping("/{noteId}")
-    public String updateUserNote(Authentication authentication, @PathVariable long noteId, @ModelAttribute NoteDTO request, Model model) {
+    public String updateUserNote(Authentication authentication, @PathVariable long noteId, @ModelAttribute RequestNoteDTO request, Model model) {
         try {
             var email = ((SecureUser) authentication.getPrincipal()).email();
             noteService.updateUserNote(noteId, request, email);
@@ -65,7 +65,6 @@ public class NoteController {
         try {
             var email = ((SecureUser) authentication.getPrincipal()).email();
             var note = noteService.findUserNote(noteId, email);
-            model.addAttribute("noteId", noteId);
             model.addAttribute("note", note);
             return "update";
         } catch (EntityException exception) {

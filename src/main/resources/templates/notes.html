@@ -51,16 +51,16 @@
 </div>
 <div class="pagination">
     <a class="pagination__element" th:classappend="${currentPage > 1 ? '' : 'invisible'}"
-       th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${currentPage - 1})}">&laquo;</a>
+       th:href="@{/notes?page={page}(page=${currentPage - 1})}">&laquo;</a>
     <a class="pagination__element"
           th:each="i : ${#numbers.sequence(1, pageAmount, 1)}"
           th:text="${i}"
-          th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${i})}"
+          th:href="@{/notes?page={page}(page=${i})}"
           th:classappend="${i == currentPage ? 'active' : ''}">
     </a>
     <a class="pagination__element"
        th:classappend="${currentPage < pageAmount ? '' : 'invisible'}"
-       th:href="@{/notes/user/{userId}?page={page}(userId=${userId},page=${currentPage + 1})}">&raquo;</a>
+       th:href="@{/notes?page={page}(page=${currentPage + 1})}">&raquo;</a>
 </div>
 <script type="text/javascript" th:src="@{/js/notes.js}"></script>
 </body>

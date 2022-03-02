@@ -1,0 +1,7 @@
+package com.example.simbirsoft.exception;
+
+public class EntityException extends RuntimeException {
+    public EntityException(String message) {
+        super(message);
+    }
+}

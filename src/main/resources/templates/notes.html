@@ -32,7 +32,7 @@
                         <p class="notes__list__table__note__title">
                             <span th:text="${note.title()}"></span>
                             <a class="notes__list__table__note__action hidden"
-                               th:href="@{/}">
+                               th:href="@{/notes/{noteId}/update(noteId=${noteId})}">
                                 <i class="material-icons prefix notes__list__table__note__icon">edit</i>
                             </a>
                             <a class="notes__list__table__note__action hidden"

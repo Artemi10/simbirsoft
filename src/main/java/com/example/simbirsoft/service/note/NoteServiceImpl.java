@@ -2,6 +2,7 @@ package com.example.simbirsoft.service.note;
 
 import com.example.simbirsoft.entity.Note;
 import com.example.simbirsoft.entity.User;
+import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.repository.NoteRepository;
 import com.example.simbirsoft.transfer.note.NoteDTO;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class NoteServiceImpl implements NoteService {
     private final NoteRepository noteRepository;
 
     @Override
-    public List<NoteDTO> findUserNotes(String email, int page) {
+    public List<NoteDTO> findUserNotes(int page, String email) {
         var pageable = PageRequest.of(page - 1, PAGE_SIZE);
         return noteRepository
                 .findAllByUserEmail(email, pageable).stream()
@@ -27,7 +28,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<NoteDTO> findUserNotes(String email) {
-        return findUserNotes(email, 1);
+        return findUserNotes(1, email);
     }
 
     @Override
@@ -42,14 +43,36 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void addUserNote(long id, NoteDTO noteDTO) {
+    public void addUserNote(long noteId, NoteDTO noteDTO) {
         noteDTO.check();
-        var user = User.builder().id(id).build();
+        var user = User.builder().id(noteId).build();
         var note = Note.builder()
                 .text(noteDTO.text())
                 .title(noteDTO.title())
                 .user(user)
                 .build();
         noteRepository.save(note);
+    }
+
+    @Override
+    public NoteDTO findUserNote(long noteId, String email) {
+        return noteRepository.findUserNoteById(noteId, email)
+                .map(note -> new NoteDTO(note.getTitle(), note.getText()))
+                .orElseThrow(() -> new EntityException("Записки не существует"));
+    }
+
+    @Override
+    public void updateUserNote(long noteId, NoteDTO noteDTO, String email) {
+        noteDTO.check();
+        var note = noteRepository.findUserNoteById(noteId, email)
+                .orElseThrow(() -> new EntityException("Записки не существует"));
+        note.setTitle(noteDTO.title());
+        note.setText(noteDTO.text());
+        noteRepository.save(note);
+    }
+
+    @Override
+    public void deleteUserNote(long noteId, String email) {
+        noteRepository.deleteUserNoteById(noteId, email);
     }
 }

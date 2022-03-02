@@ -1,6 +1,7 @@
 package com.example.simbirsoft.controller;
 
 import com.example.simbirsoft.configuration.details.SecureUser;
+import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.note.NoteService;
 import com.example.simbirsoft.transfer.note.NoteDTO;
@@ -20,7 +21,7 @@ public class NoteController {
     @GetMapping
     public String findUserNotes(Authentication authentication, @RequestParam(defaultValue = "1") int page, Model model) {
         var email = ((SecureUser) authentication.getPrincipal()).email();
-        var notes = noteService.findUserNotes(email, page);
+        var notes = noteService.findUserNotes(page, email);
         var pageAmount = noteService.getPageAmount(email);
         model.addAttribute("notes", notes);
         model.addAttribute("pageAmount", pageAmount);
@@ -37,6 +38,38 @@ public class NoteController {
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());
             return "create";
+        }
+    }
+
+    @PatchMapping("/{noteId}")
+    public String updateUserNote(Authentication authentication, @PathVariable long noteId, @ModelAttribute NoteDTO request, Model model) {
+        try {
+            var email = ((SecureUser) authentication.getPrincipal()).email();
+            noteService.updateUserNote(noteId, request, email);
+            return "redirect:/notes";
+        } catch (ValidatorException | EntityException exception) {
+            model.addAttribute("note", request);
+            return "update";
+        }
+    }
+
+    @DeleteMapping("/{noteId}")
+    public String deleteUserNote(Authentication authentication, @PathVariable long noteId) {
+        var email = ((SecureUser) authentication.getPrincipal()).email();
+        noteService.deleteUserNote(noteId, email);
+        return "redirect:/notes";
+    }
+
+    @GetMapping("/{noteId}/update")
+    public String showUpdateNoteForm(Authentication authentication, @PathVariable long noteId, Model model) {
+        try {
+            var email = ((SecureUser) authentication.getPrincipal()).email();
+            var note = noteService.findUserNote(noteId, email);
+            model.addAttribute("noteId", noteId);
+            model.addAttribute("note", note);
+            return "update";
+        } catch (EntityException exception) {
+            return "redirect:/notes";
         }
     }
 

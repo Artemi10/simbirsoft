@@ -3,6 +3,7 @@ package com.example.simbirsoft.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "notes")
@@ -20,6 +21,8 @@ public class Note {
     private String title;
     @Column(name = "text")
     private String text;
+    @Column(name = "creation_time")
+    private Timestamp creationTime;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

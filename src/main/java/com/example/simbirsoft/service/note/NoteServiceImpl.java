@@ -10,12 +10,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class NoteServiceImpl implements NoteService {
-    private static final int PAGE_SIZE = 4;
+    private static final int PAGE_SIZE = 3;
     private final NoteRepository noteRepository;
 
     @Override
@@ -23,7 +25,7 @@ public class NoteServiceImpl implements NoteService {
         var pageable = PageRequest.of(page - 1, PAGE_SIZE);
         return noteRepository
                 .findAllByUserEmail(email, pageable).stream()
-                .map(note -> new ResponseNoteDTO(note.getId(), note.getTitle(), note.getText()))
+                .map(ResponseNoteDTO::new)
                 .toList();
     }
 
@@ -47,9 +49,11 @@ public class NoteServiceImpl implements NoteService {
     public void addUserNote(long noteId, RequestNoteDTO noteDTO) {
         noteDTO.check();
         var user = User.builder().id(noteId).build();
+        var currentTime = new Timestamp(new Date().getTime());
         var note = Note.builder()
                 .text(noteDTO.text())
                 .title(noteDTO.title())
+                .creationTime(currentTime)
                 .user(user)
                 .build();
         noteRepository.save(note);
@@ -58,7 +62,7 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public ResponseNoteDTO findUserNote(long noteId, String email) {
         return noteRepository.findUserNoteById(noteId, email)
-                .map(note -> new ResponseNoteDTO(note.getId(), note.getTitle(), note.getText()))
+                .map(ResponseNoteDTO::new)
                 .orElseThrow(() -> new EntityException("Записки не существует"));
     }
 

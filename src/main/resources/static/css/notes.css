@@ -49,9 +49,21 @@
     background-color: #ffffff;
 }
 .notes__list__table__note__text{
+    background-color: #ffffff;
+    max-width: 100%;
+    overflow: hidden;
     margin: 0;
     font-size: 20px;
-    padding: 0 30px 10px 30px;
+    padding: 0 30px 0 30px;
+}
+.notes__list__table__note__text__time{
+    text-align: right;
+    background-color: #ffffff;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0;
+    font-size: 17px;
+    padding: 5px 30px 10px 30px;
 }
 .notes__list__table__note__icon {
     color: #000000;

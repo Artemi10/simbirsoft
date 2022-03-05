@@ -10,10 +10,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 @Configuration
@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(authorizeRequestsConfig -> authorizeRequestsConfig
                         .antMatchers("/", "/css/*", "/js/*").permitAll()
-                        .antMatchers("/auth/*", "/auth/log-in/*", "/user").not().authenticated()
+                        .antMatchers("/auth/sign-up", "/auth/log-in",
+                                "/auth/log-in/*", "/user").not().authenticated()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfig -> formLoginConfig
                         .defaultSuccessUrl("/")
@@ -41,13 +42,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
-                        .logoutUrl("/auth/log-out"))
+                        .logoutUrl("/auth/log-out")
+                        .logoutSuccessUrl("/auth/log-in"))
                 .rememberMe(rememberMeConfig -> rememberMeConfig
                         .key(rememberMeKey)
                         .rememberMeCookieName("authorization")
                         .useSecureCookie(true)
                         .userDetailsService(userDetailsService))
-                .csrf(AbstractHttpConfigurer::disable);
+                .csrf(csrfConfig -> csrfConfig
+                        .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
+                        .ignoringAntMatchers("/auth/sign-up", "/auth/log-in", "/auth/log-in/*", "/user")
+                );
     }
 
     @Override

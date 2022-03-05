@@ -26,10 +26,15 @@
     padding: 0;
 }
 .auth__form__remember-me{
+    margin: 0 0 20px 0;
     text-align: center;
 }
 .auth__form__remember-me__text{
     font-size: 20px !important;
+    cursor: pointer;
+}
+.auth__form__remember-me__text:hover{
+    color: #9575cd;
 }
 .auth__form__error{
     text-align: center;
@@ -39,4 +44,17 @@
 .auth__form__btn{
     font-size: 20px;
     width: 100%;
+}
+.auth__form__forget{
+    font-size: 17px !important;
+    text-align: right;
+    cursor: pointer;
+    margin: -20px 0 0 0;
+    padding: 0 20px 0 0;
+}
+.auth__form__forget__link{
+    color: #9e9e9e;
+}
+.auth__form__forget__link:hover{
+    color: #9575cd;
 }

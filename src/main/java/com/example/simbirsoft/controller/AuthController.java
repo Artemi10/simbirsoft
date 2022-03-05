@@ -23,4 +23,13 @@ public class AuthController {
     public String showSignUpPage(){
         return "auth/sign-up";
     }
+
+    @GetMapping("/email")
+    public String showEmailPage(@RequestParam(defaultValue = "false") boolean error, Model model){
+        if (error){
+            var errorMessage = "Введён неверный email";
+            model.addAttribute("error", errorMessage);
+        }
+        return "auth/email";
+    }
 }

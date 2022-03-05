@@ -1,8 +1,8 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Log In</title>
+    <title>Email</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -23,23 +23,9 @@
                 <input id="email" type="email" class="validate" th:name="email">
                 <label for="email" data-error="wrong" data-success="right">Email</label>
             </div>
-            <div class="auth__form__field input-field">
-                <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" class="validate" th:name="password">
-                <label for="password" data-error="wrong" data-success="right">Пароль</label>
-            </div>
-            <p class="auth__form__forget">
-                <a class="auth__form__forget__link" th:href="@{'/auth/email'}">Забыли пароль?</a>
-            </p>
-            <p class="auth__form__remember-me">
-                <label>
-                    <input type="checkbox" name="remember-me"/>
-                    <span class="auth__form__remember-me__text">Запомнить меня</span>
-                </label>
-            </p>
             <p class="auth__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="auth__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
-                    type="submit">Вход</button>
+                    type="submit">Отправить</button>
         </form>
     </div>
 </div>

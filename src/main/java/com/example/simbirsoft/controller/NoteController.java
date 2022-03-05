@@ -26,7 +26,7 @@ public class NoteController {
         model.addAttribute("notes", notes);
         model.addAttribute("pageAmount", pageAmount);
         model.addAttribute("currentPage", page);
-        return "notes";
+        return "note/notes";
     }
 
     @PostMapping
@@ -37,7 +37,7 @@ public class NoteController {
             return "redirect:/notes";
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());
-            return "create";
+            return "note/create";
         }
     }
 
@@ -49,7 +49,7 @@ public class NoteController {
             return "redirect:/notes";
         } catch (ValidatorException | EntityException exception) {
             model.addAttribute("note", request);
-            return "update";
+            return "note/update";
         }
     }
 
@@ -66,7 +66,7 @@ public class NoteController {
             var email = ((SecureUser) authentication.getPrincipal()).email();
             var note = noteService.findUserNote(noteId, email);
             model.addAttribute("note", note);
-            return "update";
+            return "note/update";
         } catch (EntityException exception) {
             return "redirect:/notes";
         }
@@ -74,6 +74,6 @@ public class NoteController {
 
     @GetMapping("/add")
     public String showCreateNoteForm() {
-        return "create";
+        return "note/create";
     }
 }

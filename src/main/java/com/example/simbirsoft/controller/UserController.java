@@ -21,7 +21,7 @@ public class UserController {
             return "redirect:/auth/log-in";
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());
-            return "/sign-up";
+            return "auth/sign-up";
         }
     }
 }

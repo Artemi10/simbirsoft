@@ -1,6 +1,6 @@
 package com.example.simbirsoft.repository;
 
-import com.example.simbirsoft.entity.User;
+import com.example.simbirsoft.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

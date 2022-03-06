@@ -1,5 +1,6 @@
 package com.example.simbirsoft.entity;
 
+import com.example.simbirsoft.entity.user.User;
 import lombok.*;
 
 import javax.persistence.*;

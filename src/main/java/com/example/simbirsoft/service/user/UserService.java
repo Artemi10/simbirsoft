@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     void createUser(SignUpDTO signUpDTO);
+    void resetUser(String email, String token);
+    void activateUser(String email);
 }

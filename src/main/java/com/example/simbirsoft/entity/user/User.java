@@ -1,5 +1,6 @@
-package com.example.simbirsoft.entity;
+package com.example.simbirsoft.entity.user;
 
+import com.example.simbirsoft.entity.Note;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,11 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "authority")
+    private Authority authority;
+    @Column(name = "reset_token")
+    private String resetToken;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Note> notes;
 }

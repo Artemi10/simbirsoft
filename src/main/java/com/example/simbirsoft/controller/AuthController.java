@@ -25,11 +25,7 @@ public class AuthController {
     }
 
     @GetMapping("/email")
-    public String showEmailPage(@RequestParam(defaultValue = "false") boolean error, Model model){
-        if (error){
-            var errorMessage = "Введён неверный email";
-            model.addAttribute("error", errorMessage);
-        }
+    public String showEmailPage(){
         return "/auth/email";
     }
 }

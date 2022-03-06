@@ -6,6 +6,7 @@ import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.repository.UserRepository;
 import com.example.simbirsoft.transfer.auth.SignUpDTO;
+import com.example.simbirsoft.transfer.auth.UpdateDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
         var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityException("Введён неверный email"));
         user.setResetToken(token);
-        user.setAuthority(Authority.RESET_UNCONFIRMED);
+        user.setAuthority(Authority.RESET);
         userRepository.save(user);
     }
 
@@ -57,5 +58,20 @@ public class UserServiceImpl implements UserService {
             return user.getResetToken().equals(token);
         }
         return false;
+    }
+
+    @Override
+    public void updateUser(UpdateDTO updateDTO) {
+        updateDTO.check();
+        var user = userRepository.findByEmail(updateDTO.email())
+                .orElseThrow(() -> new EntityException("Введён неверный email"));
+        if (user.getResetToken().equals(updateDTO.token())) {
+            var hashPassword = passwordEncoder.encode(updateDTO.newPassword());
+            user.setPassword(hashPassword);
+            user.setAuthority(Authority.ACTIVE);
+            user.setResetToken(null);
+            userRepository.save(user);
+        }
+        else throw new EntityException("Введён неверный токен");
     }
 }

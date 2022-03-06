@@ -28,6 +28,8 @@
                 <input id="rePassword" type="password" class="validate" th:name="rePassword">
                 <label for="rePassword" data-error="wrong" data-success="right">Повторите пароль</label>
             </div>
+            <input type="text" th:name="email" th:value="${email}" hidden>
+            <input type="text" th:name="token" th:value="${token}" hidden>
             <p class="auth__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="auth__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
                     type="submit">Изменить</button>

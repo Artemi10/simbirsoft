@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Reset</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/info.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{components/menu :: content}"></div>
+<div class="info">
+    <div class="info__container">
+        <div class="info__message">
+            <p class="info__message__text">На вашу почту было отправлено письмо с инструкцией по восстановлению пароля</p>
+            <a class="info__message__link" th:href="${'/auth/email'}">Не получили письмо?</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

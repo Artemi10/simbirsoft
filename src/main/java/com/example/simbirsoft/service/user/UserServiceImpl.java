@@ -55,7 +55,9 @@ public class UserServiceImpl implements UserService {
         var userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()) {
             var user = userOptional.get();
-            return user.getResetToken().equals(token);
+            return user.getResetToken().equals(token)
+                    && !user.getResetToken().isEmpty()
+                    && user.getAuthority().equals(Authority.RESET);
         }
         return false;
     }
@@ -65,7 +67,8 @@ public class UserServiceImpl implements UserService {
         updateDTO.check();
         var user = userRepository.findByEmail(updateDTO.email())
                 .orElseThrow(() -> new EntityException("Введён неверный email"));
-        if (user.getResetToken().equals(updateDTO.token())) {
+        if (user.getResetToken().equals(updateDTO.token())
+                && user.getAuthority().equals(Authority.RESET)) {
             var hashPassword = passwordEncoder.encode(updateDTO.newPassword());
             user.setPassword(hashPassword);
             user.setAuthority(Authority.ACTIVE);

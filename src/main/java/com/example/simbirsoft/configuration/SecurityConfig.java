@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authorizeRequestsConfig -> authorizeRequestsConfig
                         .antMatchers("/", "/css/*", "/js/*").permitAll()
                         .antMatchers("/auth/sign-up", "/auth/log-in",  "/auth/email", "/auth/email/*",
-                                "/auth/log-in/*", "/user", "/email").not().authenticated()
+                                "/auth/log-in/*", "/user", "/user/update", "/user/update/*", "/email").not().authenticated()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfig -> formLoginConfig
                         .defaultSuccessUrl("/")

@@ -26,7 +26,7 @@ public class EmailController {
         try {
             userService.resetUser(email, resetToken);
             messageSender.sendMessage(email, resetToken);
-            return "/main";
+            return "redirect:/";
         } catch (EntityException exception) {
             model.addAttribute("error", exception.getMessage());
             return "/auth/email";

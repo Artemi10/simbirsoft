@@ -38,16 +38,16 @@ public class ResetEmailMessageSender implements MessageSender {
     public void sendMessage(String email, String content) {
         try{
             var message = createMessage(email);
-            setContent(message, content);
+            setContent(message, email, content);
             Transport.send(message);
         } catch (MessagingException exception) {
             throw new EmailException("Не удалость отправить email");
         }
     }
 
-    protected void setContent(Message message, String content) throws MessagingException {
+    protected void setContent(Message message, String email, String content) throws MessagingException {
         message.setSubject("Востановление пароля");
-        var link = String.format("%s/users/update?token=%s", domainURL, content);
+        var link = String.format("%s/users/update?email=%s&token=%s", domainURL, email, content);
         var text = String.format("Востановить пароль можно по ссылке: %s", link);
         message.setText(text);
     }

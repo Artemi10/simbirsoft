@@ -1,6 +1,5 @@
 package com.example.simbirsoft.controller;
 
-import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.user.UserService;
 import com.example.simbirsoft.transfer.auth.SignUpDTO;
@@ -28,11 +27,6 @@ public class UserController {
 
     @GetMapping("/update")
     public String showUpdatePasswordPage(@RequestParam String token, @RequestParam String email){
-        try {
-            userService.confirmUpdate(email, token);
-            return "/auth/update";
-        } catch (EntityException exception) {
-            return "redirect:/";
-        }
+        return userService.isUpdateAllowed(email, token) ? "/auth/update" : "redirect:/";
     }
 }

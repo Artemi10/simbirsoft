@@ -8,5 +8,5 @@ public interface UserService {
     void createUser(SignUpDTO signUpDTO);
     void resetUser(String email, String token);
     void activateUser(String email);
-    void confirmUpdate(String email, String token);
+    boolean isUpdateAllowed(String email, String token);
 }

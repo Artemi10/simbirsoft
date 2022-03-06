@@ -50,13 +50,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void confirmUpdate(String email, String token) {
-        var user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityException("Введён неверный email"));
-        if (user.getResetToken().equals(token)) {
-            user.setResetToken(null);
-            user.setAuthority(Authority.RESET_CONFIRMED);
+    public boolean isUpdateAllowed(String email, String token) {
+        var userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            var user = userOptional.get();
+            return user.getResetToken().equals(token);
         }
-        else throw new EntityException("Токены не совпадают");
+        return false;
     }
 }

@@ -47,7 +47,7 @@ public class ResetEmailMessageSender implements MessageSender {
 
     protected void setContent(Message message, String email, String content) throws MessagingException {
         message.setSubject("Востановление пароля");
-        var link = String.format("%s/users/update?email=%s&token=%s", domainURL, email, content);
+        var link = String.format("%s/user/update?email=%s&token=%s", domainURL, email, content);
         var text = String.format("Востановить пароль можно по ссылке: %s", link);
         message.setText(text);
     }

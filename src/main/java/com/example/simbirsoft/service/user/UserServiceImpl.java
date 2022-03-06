@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityException("Введён неверный email"));
         user.setResetToken(token);
-        user.setAuthority(Authority.RESET);
+        user.setAuthority(Authority.RESET_UNCONFIRMED);
         userRepository.save(user);
     }
 

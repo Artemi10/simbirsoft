@@ -2,6 +2,7 @@ package com.example.simbirsoft.configuration.details;
 
 import com.example.simbirsoft.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -16,7 +17,8 @@ public record SecureUser(
         boolean enabled) implements UserDetails {
 
     public SecureUser(User user) {
-       this(user.getId(), user.getEmail(), user.getPassword(), Collections.emptyList(), true);
+       this(user.getId(), user.getEmail(), user.getPassword(),
+               Collections.singletonList(new SimpleGrantedAuthority(user.getAuthority().name())), true);
     }
 
     @Override

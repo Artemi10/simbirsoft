@@ -61,7 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .userDetailsService(userDetailsService))
                 .csrf(csrfConfig -> csrfConfig
                         .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
-                        .ignoringAntMatchers("/auth/sign-up", "/auth/log-in", "/auth/log-in/*", "/user")
+                        .ignoringAntMatchers("/auth/sign-up", "/auth/log-in",  "/auth/email", "/auth/email/*",
+                                "/auth/log-in/*", "/user", "/user/update", "/user/update/*", "/email")
                 );
     }
 

@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/update")
     public String showUpdatePasswordPage(@RequestParam String token, @RequestParam String email){
         try {
-            userService.confirmUpdate(token, email);
+            userService.confirmUpdate(email, token);
             return "/auth/update";
         } catch (EntityException exception) {
             return "redirect:/";

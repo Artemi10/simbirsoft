@@ -2,9 +2,14 @@ package com.example.simbirsoft.transfer.note;
 
 import com.example.simbirsoft.exception.ValidatorException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
 class RequestNoteDTOTest {
 
     @Test
@@ -23,7 +28,7 @@ class RequestNoteDTOTest {
 
     @Test
     public void execute_When_DTO_Is_Correct(){
-        var incorrectDTO = new RequestNoteDTO("Покупки", "Сходить в магазин");
-        assertDoesNotThrow(incorrectDTO::check);
+        var correctDTO = new RequestNoteDTO("Покупки", "Сходить в магазин");
+        assertDoesNotThrow(correctDTO::check);
     }
 }

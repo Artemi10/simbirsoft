@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService {
             var user = User.builder()
                     .email(signUpDTO.email())
                     .password(hashPassword)
+                    .authority(Authority.ACTIVE)
+                    .resetToken("")
+                    .notes(new ArrayList<>())
                     .build();
             userRepository.save(user);
         }

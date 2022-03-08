@@ -10,6 +10,7 @@ public record UpdateDTO(String email, String newPassword, String rePassword, Str
         checkEmail();
         checkPassword();
         checkRePassword();
+        checkToken();
     }
 
     private void checkEmail() {
@@ -28,6 +29,12 @@ public record UpdateDTO(String email, String newPassword, String rePassword, Str
         var isRePasswordValid = newPassword.equals(rePassword);
         if (!isRePasswordValid) {
             throw new ValidatorException("Пароли не совпадают");
+        }
+    }
+
+    private void checkToken() {
+        if (!isTextFieldValid(token)) {
+            throw new ValidatorException("Введён некорректный токен");
         }
     }
 }

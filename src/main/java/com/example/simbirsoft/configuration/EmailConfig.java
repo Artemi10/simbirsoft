@@ -1,6 +1,7 @@
 package com.example.simbirsoft.configuration;
 
 import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -32,8 +33,7 @@ public class EmailConfig {
     }
 
     @Bean
-    @Lookup
-    @Scope("prototype")
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Message emailMessage(Session session) throws MessagingException {
         var message = new MimeMessage(session);
         message.setFrom(new InternetAddress(emailProperties.getProperty("emailAddress")));

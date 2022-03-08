@@ -21,15 +21,15 @@ public class ResetEmailMessageSender implements MessageSender {
             setContent(email, content);
             Transport.send(message);
         } catch (MessagingException exception) {
-            throw new EmailException("Не удалость отправить email");
+            throw new EmailException("Не удалось отправить email");
         }
     }
 
     protected void setContent(String email, String content) throws MessagingException {
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-        message.setSubject("Востановление пароля");
+        message.setSubject("Восстановление пароля");
         var link = String.format("%s/user/update?email=%s&token=%s", domainURL, email, content);
-        var text = String.format("Востановить пароль можно по ссылке: %s", link);
+        var text = String.format("Восстановить пароль можно по ссылке: %s", link);
         message.setText(text);
     }
 }

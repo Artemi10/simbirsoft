@@ -12,12 +12,20 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.security.Security;
 import java.util.Properties;
 
 @Configuration
 public class EmailConfig {
     private Properties emailProperties;
     private Properties emailPropertiesConfig;
+
+    @PostConstruct
+    public void enableSSL(){
+        var disabledAlgorithms =
+                "RC4, DES, MD5withRSA, DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL";
+        Security.setProperty("jdk.tls.disabledAlgorithms", disabledAlgorithms);
+    }
 
     @PostConstruct
     public void init() throws IOException {

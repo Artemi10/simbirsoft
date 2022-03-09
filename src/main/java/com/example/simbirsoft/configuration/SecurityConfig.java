@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
-import javax.annotation.PostConstruct;
-import java.security.Security;
 
 @Configuration
 @EnableWebSecurity
@@ -27,18 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private String rememberMeKey;
     private final UserDetailsService userDetailsService;
 
-    @PostConstruct
-    public void enableSSL(){
-        var disabledAlgorithms =
-                "RC4, DES, MD5withRSA, DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL";
-        Security.setProperty("jdk.tls.disabledAlgorithms", disabledAlgorithms);
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequestsConfig -> authorizeRequestsConfig
-                        .antMatchers("/", "/css/*", "/js/*").permitAll()
+                        .antMatchers("/", "/css/*", "/js/*", "/images/*").permitAll()
                         .antMatchers("/auth/sign-up", "/auth/log-in",  "/auth/email", "/auth/email/*",
                                 "/auth/log-in/*", "/user", "/user/update", "/user/update/*", "/email").not().authenticated()
                         .anyRequest().authenticated())

@@ -39,8 +39,8 @@ public class NoteServiceImplTest {
         userNotes = Lists.list(
                 Note.builder()
                         .id(1)
-                        .title("Лабароторная работа")
-                        .text("Сделать лабаротоную работу по схемотехнике")
+                        .title("Лабораторная работа")
+                        .text("Сделать лаборатоную работу по схемотехнике")
                         .creationTime(new Timestamp(new Date().getTime()))
                         .build(),
                 Note.builder()

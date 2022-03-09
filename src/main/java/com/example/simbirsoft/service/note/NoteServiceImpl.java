@@ -46,9 +46,9 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void addUserNote(long noteId, RequestNoteDTO noteDTO) {
+    public void addUserNote(long userId, RequestNoteDTO noteDTO) {
         noteDTO.check();
-        var user = User.builder().id(noteId).build();
+        var user = User.builder().id(userId).build();
         var currentTime = new Timestamp(new Date().getTime());
         var note = Note.builder()
                 .text(noteDTO.text())
@@ -60,8 +60,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public ResponseNoteDTO findUserNote(long noteId, String email) {
-        return noteRepository.findUserNoteById(noteId, email)
+    public ResponseNoteDTO findUserNote(long userId, String email) {
+        return noteRepository.findUserNoteById(userId, email)
                 .map(ResponseNoteDTO::new)
                 .orElseThrow(() -> new EntityException("Записки не существует"));
     }

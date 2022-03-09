@@ -12,7 +12,7 @@ public interface NoteService {
     List<ResponseNoteDTO> findUserNotes(int page, String email);
     List<ResponseNoteDTO> findUserNotes(String email);
     int getPageAmount(String email);
-    void addUserNote(long noteId, RequestNoteDTO noteDTO);
+    void addUserNote(long userId, RequestNoteDTO noteDTO);
     void updateUserNote(long noteId, RequestNoteDTO noteDTO, String email);
     void deleteUserNote(long noteId, String email);
 }

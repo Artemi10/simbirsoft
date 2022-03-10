@@ -1,0 +1,17 @@
+version: '3'
+services:
+  database:
+    image: postgres:14.2-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=2424285
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/1.sql
+    container_name: devanmejia-todolist-db
+
+  todolist:
+    build: ./
+    ports:
+      - "8080:8080"
+    container_name: devanmejia-todolist-jar

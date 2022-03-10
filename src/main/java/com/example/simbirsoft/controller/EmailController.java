@@ -26,14 +26,14 @@ public class EmailController {
         try {
             userService.resetUser(email, resetToken);
             messageSender.sendMessage(email, resetToken);
-            return "/auth/reset-info";
+            return "auth/reset-info";
         } catch (EntityException exception) {
             model.addAttribute("error", exception.getMessage());
-            return "/auth/email";
+            return "auth/email";
         } catch (EmailException exception) {
             userService.activateUser(email);
             model.addAttribute("error", exception.getMessage());
-            return "/auth/email";
+            return "auth/email";
         }
     }
 }

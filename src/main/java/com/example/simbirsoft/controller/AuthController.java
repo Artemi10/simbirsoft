@@ -17,7 +17,7 @@ public class AuthController {
             var errorMessage = "Введён неверный логин или пароль";
             model.addAttribute("error", errorMessage);
         }
-        return "/auth/log-in";
+        return "auth/log-in";
     }
 
     @GetMapping("/sign-up")
@@ -27,6 +27,6 @@ public class AuthController {
 
     @GetMapping("/email")
     public String showEmailPage(){
-        return "/auth/email";
+        return "auth/email";
     }
 }

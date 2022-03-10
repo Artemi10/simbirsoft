@@ -127,8 +127,8 @@ public class NoteServiceImplTest {
         var email = "lyah.artem10@mail.ru";
         var response = assertDoesNotThrow(() -> noteService.findUserNote(noteId, email));
         assertEquals(noteId, response.id());
-        assertEquals("Лабароторная работа", response.title());
-        assertEquals("Сделать лабаротоную работу по схемотехнике", response.text());
+        assertEquals("Лабораторная работа", response.title());
+        assertEquals("Сделать лаборатоную работу по схемотехнике", response.text());
         verify(noteRepository, times(1)).findUserNoteById(noteId, email);
     }
 

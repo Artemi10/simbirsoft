@@ -23,7 +23,7 @@ public class UserController {
             return "redirect:/auth/log-in";
         } catch (ValidatorException exception) {
             model.addAttribute("error", exception.getMessage());
-            return "/auth/sign-up";
+            return "auth/sign-up";
         }
     }
 
@@ -32,7 +32,7 @@ public class UserController {
         if (userService.isUpdateAllowed(email, token)) {
             model.addAttribute("email", email);
             model.addAttribute("token", token);
-            return "/auth/update";
+            return "auth/update";
         }
         return "redirect:/";
     }
@@ -46,7 +46,7 @@ public class UserController {
             model.addAttribute("error", exception.getMessage());
             model.addAttribute("email", request.email());
             model.addAttribute("token", request.token());
-            return "/auth/update";
+            return "auth/update";
         }
     }
 }

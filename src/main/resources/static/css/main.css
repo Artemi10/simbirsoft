@@ -6,6 +6,7 @@
     height: calc(100vh - 64px);
 }
 .main__container{
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #d1c4e9;
@@ -23,7 +24,6 @@
     background-color: #d1c4e9;
 }
 .main__container__img{
-    min-height: 340px;
     height: 55%;
     text-align: center;
     background-color: #d1c4e9;

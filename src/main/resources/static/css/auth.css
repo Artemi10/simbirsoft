@@ -8,13 +8,17 @@
 .auth__container{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: calc(100vh - 64px);
+    justify-content: center;
+    background-color: #d1c4e9;
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
 }
 .auth__form {
+    margin: 0 auto;
     background-color: #ffffff;
-    width: 500px;
-    margin: 0;
+    max-width: 500px;
+    width: 80%;
     padding: 0;
     border-radius: 2px;
     -webkit-box-shadow: 13px 16px 15px 3px rgba(34, 60, 80, 0.4);

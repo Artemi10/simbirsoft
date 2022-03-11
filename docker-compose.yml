@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=2424288
     volumes:
-      - ./schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/1.sql
     container_name: devanmejia-todolist-db
 
   todolist:
@@ -22,3 +22,5 @@ services:
       - DATABASE_PASSWORD=2424288
       - REMEMBER_ME_KEY=devanmejia
     container_name: devanmejia-todolist-jar
+    depends_on:
+      - "database"

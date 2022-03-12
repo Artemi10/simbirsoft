@@ -1,12 +1,26 @@
+.navbar{
+    position: relative;
+    height: 64px !important;
+}
+nav{
+    height: 64px !important;
+}
 .menu__logo {
     padding: 0 20px 0 20px !important;
     margin: 0;
     font-size: 30px;
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
+    height: 64px !important;
 }
 .menu__link {
-    font-size: 20px;
+    font-size: 20px !important;
+}
+.menu__link__container{
+    cursor: pointer;
+}
+.menu__link__container:hover{
+    background-color: #d1c4e9;
 }
 .menu__link_active {
     pointer-events: none;

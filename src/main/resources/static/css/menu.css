@@ -1,0 +1,14 @@
+.menu__logo {
+    padding: 0 20px 0 20px !important;
+    margin: 0;
+    font-size: 30px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+}
+.menu__link {
+    font-size: 20px;
+}
+.menu__link_active {
+    pointer-events: none;
+    cursor: default;
+}

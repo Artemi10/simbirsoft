@@ -12,33 +12,32 @@
                 <li th:attr="class=${#httpServletRequest.requestURI == '/' ? 'active' : ''}">
                     <a class="menu__link"
                        th:classappend="${#httpServletRequest.requestURI == '/' ?  'menu__link_active' : ''}"
-                       th:href="@{'/'}" >На главную</a>
+                       th:href="@{'/'}">На главную</a>
                 </li>
                 <li sec:authorize="isAuthenticated()"
                     th:attr="class=${#httpServletRequest.requestURI == '/notes' ? 'active' : ''}">
                     <a class="menu__link"
-                       th:style="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
+                       th:classappend="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
                        th:href="@{'/notes'}">Записки</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="log-out"
                     th:classappend="${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">
-                    <a class="menu__link"
-                       th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'menu__link_active' : ''}"
-                       href="javascript: document.logoutForm.submit()">Выход</a>
-                    <form name="logoutForm" th:action="@{/auth/log-out}" method="POST" th:hidden="true">
+                    <a th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
+                       href="javascript: document.menuLogoutForm.submit()" style="font-size: 20px;">Выход</a>
+                    <form name="menuLogoutForm" th:action="@{/auth/log-out}" method="POST" th:hidden="true">
                         <input hidden type="submit" value="Sign Out" />
                     </form>
                 </li>
                 <li sec:authorize="!isAuthenticated()"
                     th:attr="class=${#httpServletRequest.requestURI == '/auth/sign-up' ? 'active' : ''}">
                     <a class="menu__link"
-                       th:style="${#httpServletRequest.requestURI == '/auth/sign-up' ?  'menu__link_active' : ''}"
+                       th:classappend="${#httpServletRequest.requestURI == '/auth/sign-up' ?  'menu__link_active' : ''}"
                        th:href="@{'/auth/sign-up'}">Регистрация</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()"
                     th:attr="class=${#httpServletRequest.requestURI == '/auth/log-in' ? 'active' : ''}">
                     <a class="menu__link"
-                       th:style="${#httpServletRequest.requestURI == '/auth/log-in' ?  'menu__link_active' : ''}"
+                       th:classappend="${#httpServletRequest.requestURI == '/auth/log-in' ?  'menu__link_active' : ''}"
                        th:href="@{'/auth/log-in'}">Вход</a>
                 </li>
             </ul>
@@ -48,33 +47,32 @@
         <li th:attr="class=${#httpServletRequest.requestURI == '/' ? 'active' : ''}">
             <a class="menu__link"
                th:classappend="${#httpServletRequest.requestURI == '/' ?  'menu__link_active' : ''}"
-               th:href="@{'/'}" >На главную</a>
+               th:href="@{'/'}">На главную</a>
         </li>
         <li sec:authorize="isAuthenticated()"
             th:attr="class=${#httpServletRequest.requestURI == '/notes' ? 'active' : ''}">
             <a class="menu__link"
-               th:style="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
+               th:classappend="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
                th:href="@{'/notes'}">Записки</a>
         </li>
-        <li class="log-out" sec:authorize="isAuthenticated()"
+        <li sec:authorize="isAuthenticated()" class="log-out"
             th:classappend="${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">
-            <a class="menu__link"
-               th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'menu__link_active' : ''}"
-               href="javascript: document.logoutForm.submit()">Выход</a>
-            <form name="logoutForm" th:action="@{/auth/log-out}" method="POST" th:hidden="true">
+            <a th:style="${#httpServletRequest.requestURI == '/auth/log-out' ?  'pointer-events: none;cursor: default; font-size: 20px;' : 'font-size: 20px;'}"
+               href="javascript: document.panelLogoutForm.submit()" style="font-size: 20px;">Выход</a>
+            <form name="panelLogoutForm" th:action="@{/auth/log-out}" method="POST" th:hidden="true">
                 <input hidden type="submit" value="Sign Out" />
             </form>
         </li>
         <li sec:authorize="!isAuthenticated()"
             th:attr="class=${#httpServletRequest.requestURI == '/auth/sign-up' ? 'active' : ''}">
             <a class="menu__link"
-               th:style="${#httpServletRequest.requestURI == '/auth/sign-up' ?  'menu__link_active' : ''}"
+               th:classappend="${#httpServletRequest.requestURI == '/auth/sign-up' ?  'menu__link_active' : ''}"
                th:href="@{'/auth/sign-up'}">Регистрация</a>
         </li>
         <li sec:authorize="!isAuthenticated()"
             th:attr="class=${#httpServletRequest.requestURI == '/auth/log-in' ? 'active' : ''}">
             <a class="menu__link"
-               th:style="${#httpServletRequest.requestURI == '/auth/log-in' ?  'menu__link_active' : ''}"
+               th:classappend="${#httpServletRequest.requestURI == '/auth/log-in' ?  'menu__link_active' : ''}"
                th:href="@{'/auth/log-in'}">Вход</a>
         </li>
     </ul>

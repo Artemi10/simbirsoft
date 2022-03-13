@@ -38,7 +38,7 @@
 - Download git project
 > git clone git://github.com/Artemi10/simbirsoft.git
 - Enter to project directory
-> cd simbirsoft
+> cd ./simbirsoft
 - Start docker engine
 - Run docker-compose command
 > docker-compose up

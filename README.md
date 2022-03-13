@@ -8,7 +8,7 @@
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Deployment](#deployment)
-* [Contact]()
+* [Contact](#contact)
 
 ## General Info
 - Application allows authorized users to create, store, update and delete private notes.
@@ -48,3 +48,6 @@
 ![Deployment commands](screenshots/commands.png "Deployment commands")
 
 ![Deployment app](screenshots/app.png "Deployment app")
+
+## Contact
+Email: lyah.artem10@mail.ru

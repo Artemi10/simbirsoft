@@ -1,4 +1,4 @@
-#Devanmejia ToDoList
+# Devanmejia ToDoList
 >Simple CRUD Spring Boot project
 
 ![Logo](src/main/resources/static/images/logo.png "Project Logo")
@@ -11,7 +11,7 @@
 * [Deployment]()
 * [Contact]()
 
-##General Info
+## General Info
 - Application allows authorized users to create, store, update and delete private notes.
 - Users can easily manage their own notes.
 

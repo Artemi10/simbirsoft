@@ -7,8 +7,7 @@
 * [General Info](#general-info)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Screenshots]()
-* [Deployment]()
+* [Deployment](#deployment)
 * [Contact]()
 
 ## General Info
@@ -20,12 +19,13 @@
 - Spring Boot:
     * Spring Data JPA
     * Spring Security
-- Thymeleaf
 - Lombok
 - Tests:
     * JUnit
     * Mockito
 - Postgresql
+- Thymeleaf
+- Materialize js
 
 ## Features
 - Create account by filling out sign up form.
@@ -33,3 +33,18 @@
 - Password recovery by sending resetting letter to user email.
 - Log out from application.
 - CRUD operations with notes.
+
+## Deployment
+- Download git project
+> git clone git://github.com/Artemi10/simbirsoft.git
+- Enter to project directory
+> cd simbirsoft
+- Start docker engine
+- Run docker-compose command
+> docker-compose up
+- Open project in browser
+> http://localhost:8080/
+
+![Deployment commands](screenshots/commands.png "Deployment commands")
+
+![Deployment app](screenshots/app.png "Deployment app")

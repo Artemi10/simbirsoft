@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
                     .email(signUpDTO.email())
                     .password(hashPassword)
                     .authority(Authority.ACTIVE)
-                    .resetToken("")
+                    .resetToken(null)
                     .notes(new ArrayList<>())
                     .build();
             userRepository.save(user);

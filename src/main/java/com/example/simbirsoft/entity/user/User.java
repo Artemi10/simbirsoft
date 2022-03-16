@@ -30,7 +30,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "authority")
     private Authority authority;
-    @ColumnDefault("")
     @Column(name = "reset_token")
     private String resetToken;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

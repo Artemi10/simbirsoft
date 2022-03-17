@@ -9,13 +9,13 @@ VALUES (3, 'd10@gmail.com', '$2y$10$x.jaNOvtBnsMqyhehZ5ituZzUAGnrHiSXzme1/i0Ezrc
 
 
 INSERT INTO notes (id, title, text, user_id, creation_time)
-VALUES (1, 'Спортзал', 'Сходить в спортзал в четверг в 11:20', 1, '2022-03-13 03:14:07');
+VALUES (1, 'Gym', 'Go to gym on Thursday', 1, '2022-03-13 03:14:07');
 
 INSERT INTO notes (id, title, text, user_id, creation_time)
-VALUES (2, 'Лабораторная работа', 'Сделать лабораторную работу до пятницы', 1, '2022-03-14 13:14:07');
+VALUES (2, 'Homework', 'Do homework on Friday evening', 1, '2022-03-14 13:14:07');
 
 INSERT INTO notes (id, title, text, user_id, creation_time)
-VALUES (3, 'Магазин', 'Пойти вечером в магазин за продуктами в пятнуцу', 1, '2022-03-15 10:14:07');
+VALUES (3, 'Shopping', 'Go shopping to buy products on Friday', 1, '2022-03-15 10:14:07');
 
 INSERT INTO notes (id, title, text, user_id, creation_time)
-VALUES (4, 'Прогулка в парке', 'Пойти погулять вечером в субботу', 1, '2022-03-16 8:14:07');
+VALUES (4, 'Park', 'Go to park on Saturday', 1, '2022-03-16 8:14:07');

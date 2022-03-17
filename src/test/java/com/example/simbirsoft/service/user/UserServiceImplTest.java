@@ -87,7 +87,7 @@ public class UserServiceImplTest {
                         userToCreate -> userToCreate.getAuthority().equals(Authority.ACTIVE)
                                 && userToCreate.getEmail().equals(validUserDTO.email())
                                 && passwordEncoder.matches(validUserDTO.password(), userToCreate.getPassword())
-                                && userToCreate.getResetToken().equals("")
+                                && userToCreate.getResetToken() == null
                                 && userToCreate.getNotes().isEmpty())
                 );
     }

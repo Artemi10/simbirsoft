@@ -84,8 +84,8 @@ public class NoteRepositoryTest {
     public void findUserNoteById_Test(){
         var actual = assertDoesNotThrow(() -> noteRepository
                 .findUserNoteById(1, "lyah.artem10@mail.ru").get());
-        assertEquals("Спортзал", actual.getTitle());
-        assertEquals("Сходить в спортзал в четверг в 11:20", actual.getText());
+        assertEquals("Gym", actual.getTitle());
+        assertEquals("Go to gym on Thursday", actual.getText());
         assertEquals("2022-03-13 03:14:07", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(actual.getCreationTime()));
     }
 

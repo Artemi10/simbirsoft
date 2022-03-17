@@ -1,5 +1,6 @@
 package com.example.simbirsoft.configuration;
 
+import com.example.simbirsoft.entity.user.Authority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(authorizeRequestsConfig -> authorizeRequestsConfig
                         .antMatchers("/", "/css/*", "/js/*", "/images/*").permitAll()
-                        .antMatchers("/auth/sign-up", "/auth/log-in",  "/auth/email", "/auth/email/*",
-                                "/auth/log-in/*", "/user", "/user/update", "/user/update/*", "/email").not().authenticated()
-                        .anyRequest().authenticated())
+                        .antMatchers("/auth/**", "/user", "/email").not().authenticated()
+                        .antMatchers("/user/update/**").hasAuthority(Authority.RESET.name())
+                        .anyRequest().hasAuthority(Authority.ACTIVE.name()))
                 .formLogin(formLoginConfig -> formLoginConfig
                         .defaultSuccessUrl("/")
                         .loginPage("/auth/log-in")

@@ -61,7 +61,8 @@ public class UserServiceImpl implements UserService {
         if (userOptional.isPresent()) {
             var user = userOptional.get();
             return user.getResetToken().equals(token)
-                    && !user.getResetToken().isEmpty()
+                    && user.getResetToken() != null
+                    && !user.getResetToken().isBlank()
                     && user.getAuthority().equals(Authority.RESET);
         }
         return false;

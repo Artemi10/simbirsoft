@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Регистрация</title>
-    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="use-credentials" />
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&#38;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&#38;display=swap" rel="stylesheet"/>
 </head>
 <body>
 <div th:insert="~{components/menu :: content}"></div>
@@ -22,17 +22,17 @@
         <form class="auth__form" th:action="@{/user}" method="POST" th:object="${requset}">
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">mail_outline</i>
-                <input id="email" type="email" class="validate" th:name="email">
+                <input id="email" type="email" class="validate" th:name="email"/>
                 <label for="email" data-error="wrong" data-success="right">Email</label>
             </div>
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" class="validate" th:name="password">
+                <input id="password" type="password" class="validate" th:name="password"/>
                 <label for="password" data-error="wrong" data-success="right">Пароль</label>
             </div>
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">repeat</i>
-                <input id="rePassword" type="password" class="validate" th:name="rePassword">
+                <input id="rePassword" type="password" class="validate" th:name="rePassword"/>
                 <label for="rePassword" data-error="wrong" data-success="right">Повторите пароль</label>
             </div>
             <p class="auth__form__error" th:if="${error != null}" th:text="${error}"></p>

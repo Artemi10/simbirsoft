@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Восстановление</title>
-    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="use-credentials"/>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&#38;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&#38;display=swap" rel="stylesheet"/>
 </head>
 <body>
 <div th:insert="~{components/menu :: content}"></div>
@@ -22,16 +22,16 @@
         <form class="auth__form" th:action="@{/user/update}" method="POST" th:object="${requset}">
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" class="validate" th:name="newPassword">
+                <input id="password" type="password" class="validate" th:name="newPassword"/>
                 <label for="password" data-error="wrong" data-success="right">Новый пароль</label>
             </div>
             <div class="auth__form__field input-field">
                 <i class="material-icons prefix">repeat</i>
-                <input id="rePassword" type="password" class="validate" th:name="rePassword">
+                <input id="rePassword" type="password" class="validate" th:name="rePassword"/>
                 <label for="rePassword" data-error="wrong" data-success="right">Повторите пароль</label>
             </div>
-            <input type="text" th:name="email" th:value="${email}" hidden>
-            <input type="text" th:name="token" th:value="${token}" hidden>
+            <input type="text" th:name="email" th:value="${email}" hidden="hidden"/>
+            <input type="text" th:name="token" th:value="${token}" hidden="hidden"/>
             <p class="auth__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="auth__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
                     type="submit">Изменить</button>

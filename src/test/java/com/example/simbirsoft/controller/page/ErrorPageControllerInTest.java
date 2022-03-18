@@ -59,6 +59,8 @@ public class ErrorPageControllerInTest {
     )
     public void forbidden_When_ShowErrorPage_For_Rest_User_Test() throws Exception {
         var request = MockMvcRequestBuilders.get("/error");
-        mvc.perform(request).andExpect(status().isForbidden());
+        mvc.perform(request)
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
     }
 }

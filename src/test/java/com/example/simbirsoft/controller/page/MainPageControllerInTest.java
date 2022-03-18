@@ -67,7 +67,7 @@ public class MainPageControllerInTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))
                 .andExpect(xpath("/html/body/div[1]/div/nav/div/ul/li[1]/a").string("На главную"))
-                .andExpect(xpath("/html/body/div[1]/div/nav/div/ul/li[2]/a").string("Регистрация"))
-                .andExpect(xpath("/html/body/div[1]/div/nav/div/ul/li[3]/a").string("Вход"));
+                .andExpect(xpath("/html/body/div[1]/div/nav/div/ul/li[2]/a").string("Записки"))
+                .andExpect(xpath("/html/body/div[1]/div/nav/div/ul/li[3]/a").string("Выход"));
     }
 }

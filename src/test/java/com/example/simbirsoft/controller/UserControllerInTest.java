@@ -1,6 +1,8 @@
 package com.example.simbirsoft.controller;
 
 
+import com.example.simbirsoft.exception.EntityException;
+import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +44,12 @@ public class UserControllerInTest {
         when(userService.isUpdateAllowed(
                 "lyah.artem10@mail.ru",
                 "89ca527a-45b6-46ed-8d02-8e3c1c077d72")).thenReturn(false);
+        doThrow(new EntityException("Пользователь не найден"))
+                .when(userService)
+                .updateUser(argThat(updateDTO -> !updateDTO.email().equals("lyah.artem10@mail.ru")));
+        doThrow(new ValidatorException("Пароли не совпадают"))
+                .when(userService)
+                .createUser(argThat(signUpDTO -> !signUpDTO.password().equals(signUpDTO.rePassword())));
     }
 
     @Test
@@ -74,6 +82,19 @@ public class UserControllerInTest {
     }
 
     @Test
+    public void show_Error_Message_When_CreateUser_If_RequestBody_Is_Invalid_Test() throws Exception {
+        var request = MockMvcRequestBuilders
+                .post("/user")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .param("email", "lyah.artem10@mail.ru")
+                .param("password", "qwerty")
+                .param("rePassword", "qwerty1");
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(xpath("/html/body/div[2]/div/form/p").string("Пароли не совпадают"));
+    }
+
+    @Test
     public void showUpdatePasswordPage_When_Allowed() throws Exception {
         var request = MockMvcRequestBuilders
                 .get("/user/update")
@@ -98,7 +119,7 @@ public class UserControllerInTest {
     }
 
     @Test
-    public void updateUser_When_User_If_Is_Reset_Test() throws Exception {
+    public void updateUser_When_User_Is_Reset_Test() throws Exception {
         var request = MockMvcRequestBuilders
                 .post("/user/update")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -126,5 +147,19 @@ public class UserControllerInTest {
                 .param("rePassword", "qwerty")
                 .param("token", "c93d03da-fd05-4beb-99f5-5619dc478da9");
         mvc.perform(request).andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void show_Error_Message_When_UpdateUser_If_User_Does_Not_Exist_Test() throws Exception {
+        var request = MockMvcRequestBuilders
+                .post("/user/update")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .param("email", "d@mail.ru")
+                .param("password", "qwerty")
+                .param("rePassword", "qwerty")
+                .param("token", "c93d03da-fd05-4beb-99f5-5619dc478da9");
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(xpath("/html/body/div[2]/div/form/p").string("Пользователь не найден"));
     }
 }

@@ -1,6 +1,8 @@
 package com.example.simbirsoft.controller;
 
 import com.example.simbirsoft.configuration.TestSecureUserDetailsService;
+import com.example.simbirsoft.exception.EntityException;
+import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.note.NoteService;
 import com.example.simbirsoft.transfer.note.ResponseNoteDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,8 +40,22 @@ public class NoteControllerInTest {
 
     @BeforeEach
     public void initMock(){
+        doThrow(new EntityException("Записка не найдена"))
+                .when(noteService)
+                .findUserNote(4, "lyah.artem10@mail.ru");
         when(noteService.findUserNote(1, "lyah.artem10@mail.ru"))
                 .thenReturn(new ResponseNoteDTO(1, "Gym", "Go to the gym", "21 марта 2022 16:24:54"));
+        doThrow(new ValidatorException("Введён некорректный заголовок"))
+                .when(noteService)
+                .addUserNote(
+                        anyLong(),
+                        argThat(requestNoteDTO -> requestNoteDTO.title().equals("")));
+        doThrow(new ValidatorException("Введён некорректный заголовок"))
+                .when(noteService)
+                .updateUserNote(
+                        anyLong(),
+                        argThat(requestNoteDTO -> requestNoteDTO.title().equals("")),
+                        anyString());
     }
 
     @TestConfiguration
@@ -94,6 +110,23 @@ public class NoteControllerInTest {
     }
 
     @Test
+    @WithUserDetails(
+            value = "lyah.artem10@mail.ru",
+            userDetailsServiceBeanName = "testUserDetailsService"
+    )
+    public void show_Error_Message_When_CreateUserNote_RequestBody_Is_Invalid() throws Exception {
+        var request = MockMvcRequestBuilders
+                .post("/notes")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .param("title", "")
+                .param("text", "Go to gym on Thursday");
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(xpath("/html/body/div[2]/div/form/p").string("Введён некорректный заголовок"));
+    }
+
+    @Test
     public void forbidden_When_CreateUserNote_If_User_Is_Not_Authenticated() throws Exception {
         var request = MockMvcRequestBuilders
                 .post("/notes")
@@ -139,6 +172,23 @@ public class NoteControllerInTest {
         mvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("**/auth/log-in"));
+    }
+
+    @Test
+    @WithUserDetails(
+            value = "lyah.artem10@mail.ru",
+            userDetailsServiceBeanName = "testUserDetailsService"
+    )
+    public void show_Error_Message_When_UpdateUserNotes_RequestBody_Is_Invalid() throws Exception {
+        var request = MockMvcRequestBuilders
+                .post("/notes/2/update")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .param("title", "")
+                .param("text", "Go to gym on Thursday");
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(xpath("/html/body/div[2]/div/form/p").string("Введён некорректный заголовок"));
     }
 
     @Test
@@ -199,6 +249,20 @@ public class NoteControllerInTest {
                 .get("/notes/1/update")
                 .with(csrf());
         mvc.perform(request).andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails(
+            value = "lyah.artem10@mail.ru",
+            userDetailsServiceBeanName = "testUserDetailsService"
+    )
+    public void redirect_When_ShowUpdateNoteForm_If_Note_Not_Found_Test() throws Exception {
+        var request = MockMvcRequestBuilders
+                .get("/notes/4/update")
+                .with(csrf());
+        mvc.perform(request)
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/notes"));
     }
 
     @Test

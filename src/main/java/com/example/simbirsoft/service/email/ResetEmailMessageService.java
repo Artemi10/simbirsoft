@@ -3,7 +3,9 @@ package com.example.simbirsoft.service.email;
 import com.example.simbirsoft.exception.EmailException;
 import com.example.simbirsoft.service.email.sender.MessageSender;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,15 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 
 @Service
-@RequiredArgsConstructor
 public class ResetEmailMessageService implements MessageService {
-    private final MessageSender sender;
+    private MessageSender sender;
     @Value("${server.domain.url}")
     private String domainURL;
+
+    @Autowired
+    public ResetEmailMessageService(MessageSender sender) {
+        this.sender = sender;
+    }
 
     @Override
     public void sendMessage(String email, String content) {
@@ -39,5 +45,10 @@ public class ResetEmailMessageService implements MessageService {
     @Lookup
     protected Message emailMessage(){
         return null;
+    }
+
+    @Autowired
+    public void setSender(MessageSender sender) {
+        this.sender = sender;
     }
 }

@@ -2,7 +2,7 @@ package com.example.simbirsoft.controller;
 
 import com.example.simbirsoft.exception.EmailException;
 import com.example.simbirsoft.exception.EntityException;
-import com.example.simbirsoft.service.email.MessageSender;
+import com.example.simbirsoft.service.email.MessageService;
 import com.example.simbirsoft.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class EmailControllerInTest {
     @MockBean
     private UserService userService;
     @MockBean
-    private MessageSender messageSender;
+    private MessageService messageService;
     private final MockMvc mvc;
 
     @Autowired
@@ -48,7 +48,7 @@ public class EmailControllerInTest {
                 .when(userService)
                 .resetUser(eq("lyah.artem10@mail.ru"), anyString());
         doThrow(new EmailException("Не удалось отправить email"))
-                .when(messageSender)
+                .when(messageService)
                 .sendMessage(eq("d@mail.ru"), anyString());
     }
 
@@ -64,7 +64,7 @@ public class EmailControllerInTest {
                         .string("На вашу почту было отправлено письмо с инструкцией по восстановлению пароля"));
         verify(userService, times(1))
                 .resetUser(eq("lyah.artem10@mail.ru"), anyString());
-        verify(messageSender, times(1))
+        verify(messageService, times(1))
                 .sendMessage(eq("lyah.artem10@mail.ru"), anyString());
     }
 
@@ -93,7 +93,7 @@ public class EmailControllerInTest {
                 .andExpect(xpath("/html/body/div[2]/div/form/p").string("Введён неверный email"));
         verify(userService, times(1))
                 .resetUser(eq("lyah.artem10@gmail.com"), anyString());
-        verify(messageSender, times(0))
+        verify(messageService, times(0))
                 .sendMessage(anyString(), anyString());
     }
 
@@ -108,7 +108,7 @@ public class EmailControllerInTest {
                 .andExpect(xpath("/html/body/div[2]/div/form/p").string("Не удалось отправить email"));
         verify(userService, times(1))
                 .resetUser(eq("d@mail.ru"), anyString());
-        verify(messageSender, times(1))
+        verify(messageService, times(1))
                 .sendMessage(anyString(), anyString());
     }
 }

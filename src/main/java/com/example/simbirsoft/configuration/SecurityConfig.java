@@ -1,6 +1,5 @@
 package com.example.simbirsoft.configuration;
 
-import com.example.simbirsoft.entity.user.Authority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

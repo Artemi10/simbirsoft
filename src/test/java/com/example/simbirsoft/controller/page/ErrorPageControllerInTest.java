@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -56,7 +57,8 @@ public class ErrorPageControllerInTest {
             authorities = { "RESET" }
     )
     public void forbidden_When_ShowErrorPage_For_Rest_User_Test() throws Exception {
-        var request = MockMvcRequestBuilders.get("/error");
+        var request = MockMvcRequestBuilders
+                .get("/error");
         mvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));

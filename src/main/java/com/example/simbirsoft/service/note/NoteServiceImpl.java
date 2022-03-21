@@ -22,11 +22,14 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<ResponseNoteDTO> findUserNotes(int page, String email) {
-        var pageable = PageRequest.of(page - 1, PAGE_SIZE);
-        return noteRepository
-                .findAllByUserEmail(email, pageable).stream()
-                .map(ResponseNoteDTO::new)
-                .toList();
+        if (page > 0){
+            var pageable = PageRequest.of(page - 1, PAGE_SIZE);
+            return noteRepository
+                    .findAllByUserEmail(email, pageable).stream()
+                    .map(ResponseNoteDTO::new)
+                    .toList();
+        }
+        else throw new EntityException("Записей не существует");
     }
 
     @Override

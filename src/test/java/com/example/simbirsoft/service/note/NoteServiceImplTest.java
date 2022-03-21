@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -29,6 +31,7 @@ public class NoteServiceImplTest {
     private final NoteRepository noteRepository;
     private final NoteService noteService;
     private List<Note> userNotes;
+    private List<Note> fullPageUserNotes;
 
     @Autowired
     public NoteServiceImplTest() {
@@ -64,13 +67,44 @@ public class NoteServiceImplTest {
                         .creationTime(new Timestamp(new Date().getTime()))
                         .build()
         );
+        fullPageUserNotes = Lists.list(
+                Note.builder()
+                        .id(1)
+                        .title("Лабораторная работа")
+                        .text("Сделать лаборатоную работу по схемотехнике")
+                        .creationTime(new Timestamp(new Date().getTime()))
+                        .build(),
+                Note.builder()
+                        .id(2)
+                        .title("Спортзал")
+                        .text("Сходить в спортзал в пятницу")
+                        .creationTime(new Timestamp(new Date().getTime()))
+                        .build(),
+                Note.builder()
+                        .id(3)
+                        .title("Магазин")
+                        .text("Пойти в магазин за продуктами")
+                        .creationTime(new Timestamp(new Date().getTime()))
+                        .build()
+        );
     }
 
     @BeforeEach
     public void initMock() {
+        when(noteRepository.findAllByUserEmail(
+                eq("lyah.artem10@gmail.com"),
+                argThat(pageable -> pageable.getPageNumber() == 0)))
+                .thenReturn(new PageImpl<>(fullPageUserNotes));
+        when(noteRepository.findAllByUserEmail(
+                eq("lyah.artem10@gmail.com"),
+                argThat(pageable -> pageable.getPageNumber() == 1)))
+                .thenReturn(Page.empty());
+        when(noteRepository.getUserNotesAmount("lyah.artem10@gmail.com"))
+                .thenReturn(fullPageUserNotes.size());
         when(noteRepository.getUserNotesAmount("lyah.artem10@mail.ru"))
                 .thenReturn(userNotes.size());
-        when(noteRepository.getUserNotesAmount(argThat(email -> !email.equals("lyah.artem10@mail.ru"))))
+        when(noteRepository.getUserNotesAmount(
+                argThat(email -> !email.equals("lyah.artem10@mail.ru") && !email.equals("lyah.artem10@gmail.com"))))
                 .thenReturn(0);
         when(noteRepository.findUserNoteById(1, "lyah.artem10@mail.ru"))
                 .thenReturn(Optional.of(userNotes.get(0)));
@@ -86,6 +120,39 @@ public class NoteServiceImplTest {
                             .creationTime(note.getCreationTime())
                             .build();
                 });
+    }
+
+    @Test
+    public void findUserNotes_First_Page_Test(){
+        var expected = noteService.findUserNotes(1, "lyah.artem10@gmail.com");
+        assertEquals(3, expected.size());
+    }
+
+    @Test
+    public void findUserNotes_Default_Page_Test(){
+        var expected = noteService.findUserNotes("lyah.artem10@gmail.com");
+        assertEquals(3, expected.size());
+    }
+
+    @Test
+    public void findUserNotes_Second_Page_Test(){
+        var expected = noteService.findUserNotes(2, "lyah.artem10@gmail.com");
+        assertTrue(expected.isEmpty());
+    }
+
+    @Test
+    public void throw_Exception_When_FindUserNotes_If_Page_Amount_Less_Than_Or_Equal_Zero_Test() {
+        var expectedWhenZero = assertThrows(EntityException.class, () -> noteService.findUserNotes(0, "lyah.artem10@gmail.com"));
+        assertEquals("Записей не существует", expectedWhenZero.getMessage());
+        var expectedWhenNegative = assertThrows(EntityException.class, () -> noteService.findUserNotes(-5, "lyah.artem10@gmail.com"));
+        assertEquals("Записей не существует", expectedWhenNegative.getMessage());
+    }
+
+    @Test
+    public void getPageAmount_From_Full_PageUser_Notes_Test() {
+        assertEquals(1, noteService.getPageAmount("lyah.artem10@gmail.com"));
+        verify(noteRepository, times(1))
+                .getUserNotesAmount("lyah.artem10@gmail.com");
     }
 
     @Test
@@ -185,5 +252,12 @@ public class NoteServiceImplTest {
                 () -> noteService.updateUserNote(10, noteDTO2, "lyah.artem03@mail.ru"));
         assertEquals("Введён некорректный текст", exception.getMessage());
         verify(noteRepository, times(0)).findUserNoteById(anyInt(), anyString());
+    }
+
+    @Test
+    public void deleteUserNote_Test(){
+        noteService.deleteUserNote(1, "lyah.artem10@mail.ru");
+        verify(noteRepository, times(1))
+                .deleteByIdAndUserEmail(1, "lyah.artem10@mail.ru");
     }
 }

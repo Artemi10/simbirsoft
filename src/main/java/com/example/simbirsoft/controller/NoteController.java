@@ -50,6 +50,8 @@ public class NoteController {
             noteService.updateUserNote(noteId, request, email);
             return "redirect:/notes";
         } catch (ValidatorException | EntityException exception) {
+            model.addAttribute("error", exception.getMessage());
+            model.addAttribute("noteId", noteId);
             model.addAttribute("note", request);
             return "note/update";
         }

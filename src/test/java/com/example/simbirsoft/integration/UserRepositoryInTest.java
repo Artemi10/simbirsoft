@@ -75,7 +75,7 @@ public class UserRepositoryInTest {
                 .password("$2y$10$ZPgg5k.SQaJIxjGF7AU15.GNVF2U7MVJJWgMxkyuXjW550XIEEK52")
                 .authority(Authority.ACTIVE)
                 .resetToken(null)
-                .notes(new ArrayList<>())
+                .applications(new ArrayList<>())
                 .build();
         userRepository.save(user);
         var actualAfter = userRepository.findByEmail("toAdd@mail.ru");

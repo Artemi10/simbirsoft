@@ -45,7 +45,7 @@ public class UserServiceImplTest {
                 .password(passwordEncoder.encode("2424285"))
                 .authority(Authority.ACTIVE)
                 .resetToken("")
-                .notes(new ArrayList<>())
+                .applications(new ArrayList<>())
                 .build();
         var resetUser = User.builder()
                 .id(2)
@@ -53,7 +53,7 @@ public class UserServiceImplTest {
                 .password(passwordEncoder.encode("qwerty"))
                 .authority(Authority.RESET)
                 .resetToken("d00a6c00-b554-4637-8939-77ad8e715244")
-                .notes(new ArrayList<>())
+                .applications(new ArrayList<>())
                 .build();
         when(userRepository.findByEmail("lyah.artem10@mail.ru"))
                 .thenReturn(Optional.of(activeUser));
@@ -71,7 +71,7 @@ public class UserServiceImplTest {
                             .password(user.getPassword())
                             .authority(user.getAuthority())
                             .resetToken(user.getResetToken())
-                            .notes(user.getNotes())
+                            .applications(user.getApplications())
                             .build();
                 });
     }
@@ -88,7 +88,7 @@ public class UserServiceImplTest {
                                 && userToCreate.getEmail().equals(validUserDTO.email())
                                 && passwordEncoder.matches(validUserDTO.password(), userToCreate.getPassword())
                                 && userToCreate.getResetToken() == null
-                                && userToCreate.getNotes().isEmpty())
+                                && userToCreate.getApplications().isEmpty())
                 );
     }
 
@@ -121,7 +121,7 @@ public class UserServiceImplTest {
                                 && userToReset.getEmail().equals("lyah.artem10@mail.ru")
                                 && passwordEncoder.matches("2424285", userToReset.getPassword())
                                 && userToReset.getResetToken().equals("d00a6c00-b554-4637-8939-77ad8e715244")
-                                && userToReset.getNotes().isEmpty())
+                                && userToReset.getApplications().isEmpty())
                 );
     }
 
@@ -136,7 +136,7 @@ public class UserServiceImplTest {
                                 && userToReset.getEmail().equals("lyah.artem10@gmail.com")
                                 && passwordEncoder.matches("qwerty", userToReset.getPassword())
                                 && userToReset.getResetToken().equals("d00a6c00-b554-4637-8939-77ad8e715278")
-                                && userToReset.getNotes().isEmpty())
+                                && userToReset.getApplications().isEmpty())
                 );
     }
 
@@ -159,7 +159,7 @@ public class UserServiceImplTest {
                                 && userToReset.getEmail().equals("lyah.artem10@mail.ru")
                                 && passwordEncoder.matches("2424285", userToReset.getPassword())
                                 && userToReset.getResetToken() == null
-                                && userToReset.getNotes().isEmpty())
+                                && userToReset.getApplications().isEmpty())
                 );
     }
 
@@ -173,7 +173,7 @@ public class UserServiceImplTest {
                                 && userToReset.getEmail().equals("lyah.artem10@gmail.com")
                                 && passwordEncoder.matches("qwerty", userToReset.getPassword())
                                 && userToReset.getResetToken() == null
-                                && userToReset.getNotes().isEmpty())
+                                && userToReset.getApplications().isEmpty())
                 );
     }
 
@@ -222,7 +222,7 @@ public class UserServiceImplTest {
                             && user.getAuthority().equals(Authority.ACTIVE)
                             && passwordEncoder.matches(validUpdateDTO.newPassword(), user.getPassword())
                             && user.getEmail().equals("lyah.artem10@gmail.com")
-                            && user.getNotes().isEmpty()
+                            && user.getApplications().isEmpty()
                 ));
     }
 

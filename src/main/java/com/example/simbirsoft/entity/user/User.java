@@ -1,5 +1,6 @@
 package com.example.simbirsoft.entity.user;
 
+import com.example.simbirsoft.entity.Application;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +28,5 @@ public class User {
     @Column(name = "reset_token")
     private String resetToken;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Note> notes;
+    private List<Application> applications;
 }

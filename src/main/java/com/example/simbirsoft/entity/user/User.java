@@ -1,14 +1,8 @@
 package com.example.simbirsoft.entity.user;
 
-import com.example.simbirsoft.entity.Note;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity

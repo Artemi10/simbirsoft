@@ -1,7 +1,5 @@
 package com.example.simbirsoft.transfer.note;
 
-import com.example.simbirsoft.entity.Note;
-
 import java.text.SimpleDateFormat;
 
 public record ResponseNoteDTO(long id, String title, String text, String timeStr) {

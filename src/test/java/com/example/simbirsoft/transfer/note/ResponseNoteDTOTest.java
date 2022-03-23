@@ -1,6 +1,5 @@
 package com.example.simbirsoft.transfer.note;
 
-import com.example.simbirsoft.entity.Note;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

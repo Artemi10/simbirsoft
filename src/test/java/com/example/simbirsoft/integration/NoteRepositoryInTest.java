@@ -1,9 +1,7 @@
 package com.example.simbirsoft.integration;
 
-import com.example.simbirsoft.entity.Note;
 import com.example.simbirsoft.entity.user.User;
 import com.example.simbirsoft.repository.NoteRepository;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

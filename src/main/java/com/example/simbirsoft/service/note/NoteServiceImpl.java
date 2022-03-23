@@ -1,6 +1,5 @@
 package com.example.simbirsoft.service.note;
 
-import com.example.simbirsoft.entity.Note;
 import com.example.simbirsoft.entity.user.User;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.repository.NoteRepository;

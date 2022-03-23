@@ -17,7 +17,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
               SELECT note
               FROM Note note
               WHERE note.user.email = :email
-              ORDER BY note.user.email DESC""")
+              ORDER BY note.id DESC""")
     Page<Note> findAllByUserEmail(String email, Pageable pageable);
 
     @Query("""

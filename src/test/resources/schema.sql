@@ -1,11 +1,27 @@
 create table users
 (
-    id          bigint,
-    email       varchar(254) not null,
-    password    varchar(254) not null,
+    id          bigint
+        constraint users_pk primary key,
+    email       varchar(255) not null,
+    password    varchar(255) not null,
     authority   varchar(6)   not null,
-    reset_token varchar(36)
+    reset_token varchar(128)
 );
+
+create table applications
+(
+    id            bigint
+        constraint applications_pk primary key,
+    name          varchar(255) not null,
+    creation_time timestamp    not null,
+    user_id       bigint       not null
+        constraint applications_users_id_fk
+            references users
+            on delete cascade
+);
+
+create unique index applications_id_uindex
+    on applications (id);
 
 create unique index users_email_uindex
     on users (email);
@@ -13,19 +29,18 @@ create unique index users_email_uindex
 create unique index users_id_uindex
     on users (id);
 
-create table notes
+create table events
 (
-    id            bigint
-        constraint notes_pk
-            primary key,
-    title         varchar(40)  not null,
-    text          varchar(254) not null,
-    user_id       bigint       not null
-        constraint notes_users_id_fk
-            references users (id)
-            on update cascade on delete cascade,
-    creation_time timestamp    not null
+    id                bigint
+        constraint events_pk primary key,
+    name              varchar(50) not null,
+    extra_information varchar(255),
+    time              timestamp   not null,
+    application_id    bigint      not null
+        constraint events_applications_id_fk
+            references applications
+            on delete cascade
 );
 
-create unique index notes_id_uindex
-    on notes (id);
+create unique index events_id_uindex
+    on events (id);

@@ -13,7 +13,7 @@ public interface AppService {
     List<AppResponseDTO> findUserApps(int page, String email);
     List<AppResponseDTO> findUserApps(String email);
     int getPageAmount(String email);
-    void addUserApp(long userId, AppRequestDTO noteDTO);
-    void updateUserApp(long appId, AppRequestDTO noteDTO, String email);
+    void addUserApp(long userId, AppRequestDTO appDTO);
+    void updateUserApp(long appId, AppRequestDTO appDTO, String email);
     void deleteUserApp(long appId, String email);
 }

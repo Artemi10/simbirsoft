@@ -29,9 +29,9 @@ public interface AppRepository extends JpaRepository<App, Long> {
               FROM App app
               WHERE app.user.email = :email
               AND app.id = :noteId""")
-    Optional<App> findUserAppById(long noteId, String email);
+    Optional<App> findUserAppById(long appId, String email);
 
     @Modifying
     @Transactional
-    void deleteByIdAndUserEmail(long noteId, String email);
+    void deleteByIdAndUserEmail(long appId, String email);
 }

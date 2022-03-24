@@ -20,7 +20,7 @@
 <div class="main">
     <div class="main__container">
         <div class="main__container__name">
-            <h1>Devanmejia ToDoList</h1>
+            <h1>Devanmejia ApplicationList</h1>
         </div>
         <div class="main__container__img">
             <img th:src="@{/images/logo.png}"/>
@@ -29,7 +29,7 @@
             <a sec:authorize="!isAuthenticated()" class="waves-effect waves-light btn-large"
                th:href="@{'/auth/sign-up'}">Начать</a>
             <a sec:authorize="isAuthenticated()" class="waves-effect waves-light btn-large"
-               th:href="@{'/notes'}">Продолжить</a>
+               th:href="@{'/apps'}">Продолжить</a>
         </div>
     </div>
 </div>

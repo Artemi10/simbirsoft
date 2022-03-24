@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Создать</title>
+    <title>Изменить</title>
     <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/create.css}"/>
@@ -19,21 +19,16 @@
 <div th:insert="~{components/menu :: content}"></div>
 <div class="create">
     <div class="create__container">
-        <form class="create__form" th:action="@{/notes}"
-              th:method="'POST'" th:object="${requset}">
+        <form class="create__form" th:action="@{/apps/{appId}/update(appId=${appId})}" method="POST">
             <div class="create__form__field input-field">
                 <i class="material-icons prefix">border_color</i>
-                <input id="title" type="text" class="validate" th:name="title" maxlength="40"/>
-                <label for="title" data-error="wrong" data-success="right">Заголовок</label>
-            </div>
-            <div class="create__form__field input-field">
-                <i class="material-icons prefix">mail_outline</i>
-                <textarea id="text" class="materialize-textarea" th:name="text" maxlength="254"></textarea>
-                <label for="text">Содержание</label>
+                <input id="title" type="text" class="validate" th:name="title"
+                       th:value="${app.name()}" maxlength="50"/>
+                <label for="title" data-error="wrong" data-success="right">Название</label>
             </div>
             <p class="create__form__error" th:if="${error != null}" th:text="${error}"></p>
             <button class="create__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
-                    type="submit">Создать</button>
+                    type="submit">Изменить</button>
         </form>
     </div>
 </div>

@@ -11,8 +11,8 @@
 * [Contact](#contact)
 
 ## General Info
-- Application allows authorized users to create, store, update and delete private notes.
-- Users can easily manage their own notes.
+- Application allows authorized users to create, store, update and delete private apps.
+- Users can easily manage their own apps.
 
 ## Technologies Used
 - Java 17
@@ -32,7 +32,7 @@
 - Log in to user account with/without remember me token.
 - Password recovery by sending resetting letter to user email.
 - Log out from application.
-- CRUD operations with notes.
+- CRUD operations with apps.
 
 ## Deployment
 - Download git project

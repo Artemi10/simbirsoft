@@ -15,10 +15,10 @@
                        th:href="@{'/'}">На главную</a>
                 </li>
                 <li sec:authorize="isAuthenticated()"
-                    th:attr="class=${#httpServletRequest.requestURI == '/notes' ? 'active' : ''}">
+                    th:attr="class=${#httpServletRequest.requestURI == '/apps' ? 'active' : ''}">
                     <a class="menu__link"
-                       th:classappend="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
-                       th:href="@{'/notes'}">Записки</a>
+                       th:classappend="${#httpServletRequest.requestURI == '/apps' ?  'menu__link_active' : ''}"
+                       th:href="@{'/apps'}">Приложения</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="log-out"
                     th:classappend="${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">
@@ -50,10 +50,10 @@
                th:href="@{'/'}">На главную</a>
         </li>
         <li sec:authorize="isAuthenticated()"
-            th:attr="class=${#httpServletRequest.requestURI == '/notes' ? 'active' : ''}">
+            th:attr="class=${#httpServletRequest.requestURI == '/apps' ? 'active' : ''}">
             <a class="menu__link"
-               th:classappend="${#httpServletRequest.requestURI == '/notes' ?  'menu__link_active' : ''}"
-               th:href="@{'/notes'}">Записки</a>
+               th:classappend="${#httpServletRequest.requestURI == '/apps' ?  'menu__link_active' : ''}"
+               th:href="@{'/apps'}">Приложения</a>
         </li>
         <li sec:authorize="isAuthenticated()" class="log-out"
             th:classappend="${#httpServletRequest.requestURI == '/auth/log-out' ? 'active' : ''}">

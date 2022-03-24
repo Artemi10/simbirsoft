@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
                     .password(hashPassword)
                     .authority(Authority.ACTIVE)
                     .resetToken(null)
-                    .applications(new ArrayList<>())
+                    .apps(new ArrayList<>())
                     .build();
             userRepository.save(user);
         }

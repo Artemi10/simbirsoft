@@ -25,5 +25,5 @@ public class Event {
     private Timestamp time;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "application_id")
-    private Application application;
+    private App app;
 }

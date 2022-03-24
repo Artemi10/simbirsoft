@@ -28,7 +28,7 @@ public interface AppRepository extends JpaRepository<App, Long> {
               SELECT app
               FROM App app
               WHERE app.user.email = :email
-              AND app.id = :noteId""")
+              AND app.id = :appId""")
     Optional<App> findUserAppById(long appId, String email);
 
     @Modifying

@@ -124,7 +124,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>devanmejia.todolist</finalName>
+        <finalName>devanmejia.applist</finalName>
     </build>
 
 </project>

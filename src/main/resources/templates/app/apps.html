@@ -32,7 +32,8 @@
                 <th:block th:each="app : ${apps}">
                     <div class="apps__list__table__app">
                         <p class="apps__list__table__app__title">
-                            <span th:text="${app.id()}"></span>
+                            <span th:text="${app.id()}"></span>.
+                            <span th:text="${app.name()}"></span>
                             <a class="apps__list__table__app__action hidden"
                                th:href="@{/apps/{appId}/update(appId=${app.id()})}">
                                 <i class="material-icons prefix apps__list__table__app__icon">edit</i>

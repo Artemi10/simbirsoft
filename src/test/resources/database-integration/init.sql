@@ -1,14 +1,35 @@
 create table users
 (
-    id          bigserial,
-    email       varchar(254) not null,
-    password    varchar(254) not null,
+    id          bigserial
+        constraint users_pk
+            primary key,
+    email       varchar(255) not null,
+    password    varchar(255) not null,
     authority   varchar(6)   not null,
-    reset_token varchar(36)
+    reset_token varchar(128)
 );
 
 alter table users
     owner to postgres;
+
+create table applications
+(
+    id            bigserial
+        constraint applications_pk
+            primary key,
+    name          varchar(255) not null,
+    creation_time timestamp    not null,
+    user_id       bigint       not null
+        constraint applications_users_id_fk
+            references users
+            on delete cascade
+);
+
+alter table applications
+    owner to postgres;
+
+create unique index applications_id_uindex
+    on applications (id);
 
 create unique index users_email_uindex
     on users (email);
@@ -16,25 +37,25 @@ create unique index users_email_uindex
 create unique index users_id_uindex
     on users (id);
 
-create table notes
+create table events
 (
-    id            bigserial
-        constraint notes_pk
+    id                bigserial
+        constraint events_pk
             primary key,
-    title         varchar(40)  not null,
-    text          varchar(254) not null,
-    user_id       bigint       not null
-        constraint notes_users_id_fk
-            references users (id)
-            on update cascade on delete cascade,
-    creation_time timestamp    not null
+    name              varchar(50) not null,
+    extra_information varchar(255),
+    time              timestamp   not null,
+    application_id    bigint      not null
+        constraint events_applications_id_fk
+            references applications
+            on delete cascade
 );
 
-alter table notes
+alter table events
     owner to postgres;
 
-create unique index notes_id_uindex
-    on notes (id);
+create unique index events_id_uindex
+    on events (id);
 
 
 INSERT INTO users (email, password, authority)
@@ -47,14 +68,14 @@ INSERT INTO users (email, password, authority, reset_token)
 VALUES ('d10@gmail.com', '$2y$10$x.jaNOvtBnsMqyhehZ5ituZzUAGnrHiSXzme1/i0EzrcWgRHMl0Ve', 'RESET', '1d6c4215-ceb3-4968-ac35-3456de6b4aa9');
 
 
-INSERT INTO notes (title, text, user_id, creation_time)
-VALUES ('Gym', 'Go to gym on Thursday', 1, '2022-03-13 03:14:07');
+INSERT INTO applications (name, user_id, creation_time)
+VALUES ('Simple CRUD App', 1, '2022-03-13 03:14:07');
 
-INSERT INTO notes (title, text, user_id, creation_time)
-VALUES ('Homework', 'Do homework on Friday evening', 1, '2022-03-14 13:14:07');
+INSERT INTO applications (name, user_id, creation_time)
+VALUES ('Todo list', 1, '2022-03-14 13:14:07');
 
-INSERT INTO notes (title, text, user_id, creation_time)
-VALUES ('Shopping', 'Go shopping to buy products on Friday', 1, '2022-03-15 10:14:07');
+INSERT INTO applications (name, user_id, creation_time)
+VALUES ('Flight Timetable', 1, '2022-03-15 10:14:07');
 
-INSERT INTO notes (title, text, user_id, creation_time)
-VALUES ('Park', 'Go to park on Saturday', 1, '2022-03-16 8:14:07');
+INSERT INTO applications (name, user_id, creation_time)
+VALUES ('User chat', 1, '2022-03-16 8:14:07');

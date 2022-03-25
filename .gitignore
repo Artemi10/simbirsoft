@@ -10,6 +10,9 @@ target/devanmejia.todolist.jar.original
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+mvnw
+mvnw.cmd
+.mvn
 
 ### STS ###
 .apt_generated

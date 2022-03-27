@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppRequestDTOTest {
 
     @Test
-    public void throw_Exception_When_Title_Is_Incorrect() {
+    public void throw_Exception_When_Name_Is_Incorrect() {
         var incorrectDTO = new AppRequestDTO("");
         var exception = assertThrows(ValidatorException.class, incorrectDTO::check);
         assertEquals("Введено некорректное название приложения", exception.getMessage());

@@ -38,10 +38,10 @@ public class AppResponseDTOTest {
     }
 
     @Test
-    public void create_ResponseNoteDTO_Test() {
-        var noteDTO = new AppResponseDTO(app);
-        assertEquals(1, noteDTO.id());
-        assertEquals("Simple CRUD App", noteDTO.name());
-        assertEquals("03 февраля 2022 12:34:16", noteDTO.creationTime());
+    public void create_ResponseAppDTO_Test() {
+        var appDTO = new AppResponseDTO(app);
+        assertEquals(1, appDTO.id());
+        assertEquals("Simple CRUD App", appDTO.name());
+        assertEquals("03 февраля 2022 12:34:16", appDTO.creationTime());
     }
 }

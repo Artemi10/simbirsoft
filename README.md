@@ -36,7 +36,7 @@
 
 ## Deployment
 - Download git project
-> git clone git://github.com/Artemi10/simbirsoft.git
+> git clone https://github.com/Artemi10/simbirsoft.git
 - Enter to project directory
 > cd ./simbirsoft
 - Start docker engine

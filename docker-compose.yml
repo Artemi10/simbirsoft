@@ -9,9 +9,9 @@ services:
     volumes:
       - ./database_deploy/pg_hba.conf:/var/lib/data/pg_hba.conf
       - ./database_deploy/schema.sql:/docker-entrypoint-initdb.d/1.sql
-    container_name: devanmejia-todolist-db
+    container_name: devanmejia-applist-db
 
-  todolist:
+  applist:
     build: ./
     ports:
       - "8080:8080"
@@ -22,6 +22,6 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=2424288
       - REMEMBER_ME_KEY=devanmejia
-    container_name: devanmejia-todolist-jar
+    container_name: devanmejia-applist-jar
     depends_on:
       - "database"

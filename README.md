@@ -1,4 +1,4 @@
-# Devanmejia ToDoList
+# Devanmejia ApplicationsList
 >Simple CRUD Spring Boot project
 
 ![Logo](src/main/resources/static/images/logo.png "Project Logo")
@@ -11,8 +11,8 @@
 * [Contact](#contact)
 
 ## General Info
-- Application allows authorized users to create, store, update and delete private apps.
-- Users can easily manage their own apps.
+- Application allows authorized users to create, store, update and delete information about applications.
+- Users can easily manage their own applications.
 
 ## Technologies Used
 - Java 17
@@ -32,13 +32,15 @@
 - Log in to user account with/without remember me token.
 - Password recovery by sending resetting letter to user email.
 - Log out from application.
-- CRUD operations with apps.
+- CRUD operations with applications.
 
 ## Deployment
 - Download git project
-> git clone git://github.com/Artemi10/simbirsoft.git
+> git clone https://github.com/Artemi10/simbirsoft.git
 - Enter to project directory
 > cd ./simbirsoft
+- Chose volga-it branch
+> git checkout -b volga-it
 - Start docker engine
 - Run docker-compose command
 > docker-compose up

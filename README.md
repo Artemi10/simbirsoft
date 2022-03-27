@@ -40,7 +40,7 @@
 - Enter to project directory
 > cd ./simbirsoft
 - Chose volga-it branch
-> git checkout -b volga-it
+> git checkout volga-it
 - Start docker engine
 - Run docker-compose command
 > docker-compose up

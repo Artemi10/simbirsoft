@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService {
                     .build();
             eventRepository.save(event);
         }
-        else throw  new EntityException("Приложение не найдено");
+        else throw new EntityException("Приложение не найдено");
     }
 
     @Override

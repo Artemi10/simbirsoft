@@ -79,3 +79,15 @@ VALUES ('Flight Timetable', 1, '2022-03-15 10:14:07');
 
 INSERT INTO applications (name, user_id, creation_time)
 VALUES ('User chat', 1, '2022-03-16 8:14:07');
+
+INSERT INTO events (name, extra_information, time, application_id)
+VALUES ('User successfully signed up', 'Extra information', '2022-03-14 23:14:07', 2);
+
+INSERT INTO events (name, extra_information, time, application_id)
+VALUES ('User successfully logged in', 'Extra information', '2022-03-14 23:15:07', 2);
+
+INSERT INTO events (name, extra_information, time, application_id)
+VALUES ('Add new note', 'Extra information', '2022-03-14 23:15:47', 2);
+
+INSERT INTO events (name, extra_information, time, application_id)
+VALUES ('Update note', 'Extra information', '2022-03-14 23:39:07', 2);

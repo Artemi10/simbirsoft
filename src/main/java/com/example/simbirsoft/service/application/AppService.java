@@ -16,4 +16,5 @@ public interface AppService {
     void addUserApp(long userId, AppRequestDTO appDTO);
     void updateUserApp(long appId, AppRequestDTO appDTO, String email);
     void deleteUserApp(long appId, String email);
+    boolean isUserApp(long appId, String email);
 }

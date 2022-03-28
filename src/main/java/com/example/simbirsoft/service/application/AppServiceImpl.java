@@ -85,4 +85,9 @@ public class AppServiceImpl implements AppService {
     public void deleteUserApp(long appId, String email) {
         appRepository.deleteByIdAndUserEmail(appId, email);
     }
+
+    @Override
+    public boolean isUserApp(long appId, String email) {
+        return appRepository.findUserAppById(appId, email).isPresent();
+    }
 }

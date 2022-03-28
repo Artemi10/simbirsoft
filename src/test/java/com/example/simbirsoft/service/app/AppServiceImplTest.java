@@ -251,4 +251,18 @@ public class AppServiceImplTest {
         verify(appRepository, times(1))
                 .deleteByIdAndUserEmail(1, "lyah.artem10@mail.ru");
     }
+
+    @Test
+    public void return_True_When_User_Has_App(){
+        assertTrue(appService.isUserApp(1, "lyah.artem10@mail.ru"));
+        verify(appRepository, times(1))
+                .findUserAppById(1, "lyah.artem10@mail.ru");
+    }
+
+    @Test
+    public void return_False_When_User_Does_Not_Have_App(){
+        assertFalse(appService.isUserApp(1, "d@mail.ru"));
+        verify(appRepository, times(1))
+                .findUserAppById(1, "d@mail.ru");
+    }
 }

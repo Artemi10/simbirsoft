@@ -1,11 +1,19 @@
 package com.example.simbirsoft.controller.page;
 
+import com.example.simbirsoft.configuration.TestSecureUserDetailsService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -21,11 +29,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MainPageControllerInTest {
     @MockBean
     private UserDetailsService userDetailsService;
+    @MockBean
+    private OAuth2UserService<OidcUserRequest, OidcUser> oAuth2UserService;
     private final MockMvc mvc;
 
     @Autowired
     public MainPageControllerInTest(MockMvc mvc) {
         this.mvc = mvc;
+    }
+
+    @TestConfiguration
+    static class SecurityTestConfig {
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
     }
 
     @Test

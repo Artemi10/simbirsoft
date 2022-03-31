@@ -15,6 +15,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -31,6 +36,8 @@ import static org.mockito.Mockito.*;
 public class AppControllerInTest {
     @MockBean
     private AppService appService;
+    @MockBean
+    private OAuth2UserService<OidcUserRequest, OidcUser> oAuth2UserService;
     private final MockMvc mvc;
 
     @Autowired
@@ -63,6 +70,11 @@ public class AppControllerInTest {
         @Bean("testUserDetailsService")
         public UserDetailsService testUserDetailsService(){
             return new TestSecureUserDetailsService();
+        }
+
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
         }
     }
 

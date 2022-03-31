@@ -1,12 +1,13 @@
 package com.example.simbirsoft.configuration;
 
-import com.example.simbirsoft.configuration.details.SecureUser;
+import com.example.simbirsoft.configuration.security.details.SecureUser;
 import com.example.simbirsoft.entity.user.Authority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class TestSecureUserDetailsService implements UserDetailsService {
@@ -20,7 +21,9 @@ public class TestSecureUserDetailsService implements UserDetailsService {
                     "lyah.artem10@mail.ru",
                     "$2y$10$LHUDwkfwe1GsXZ7Z0qJKWO6JlDFjQRfrQMclOI9ceQBF4V2Eo7AF",
                     authorities,
-                    true);
+                    true,
+                    new HashMap<>(),
+                    null);
         }
         else throw new UsernameNotFoundException("User not found");
     }

@@ -1,6 +1,6 @@
 package com.example.simbirsoft.controller;
 
-import com.example.simbirsoft.configuration.details.SecureUser;
+import com.example.simbirsoft.configuration.security.details.SecureUser;
 import com.example.simbirsoft.service.event.EventService;
 import com.example.simbirsoft.transfer.event.EventRequestDTO;
 import lombok.AllArgsConstructor;

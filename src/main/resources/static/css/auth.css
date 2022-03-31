@@ -45,6 +45,11 @@
     color: 	#ff3333;
     font-size: 20px;
 }
+.auth__form__oauth2{
+    margin: 0 0 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
 .auth__form__btn{
     font-size: 20px;
     width: 100%;

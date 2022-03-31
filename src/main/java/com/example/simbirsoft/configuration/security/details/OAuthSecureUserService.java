@@ -40,8 +40,9 @@ public class OAuthSecureUserService implements OAuth2UserService<OidcUserRequest
                         .resetToken(null)
                         .apps(new ArrayList<>())
                         .build();
+                var savedUser = userRepository.save(user);
                 return new SecureUser(
-                        userRepository.save(user),
+                        savedUser,
                         userRequest.getIdToken().getClaims(),
                         userRequest.getIdToken());
             }

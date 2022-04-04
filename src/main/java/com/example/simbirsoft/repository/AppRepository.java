@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 public interface AppRepository extends JpaRepository<App, Long> {
-    @Query("""
+    @Query(value = """
               SELECT app
               FROM App app
               WHERE app.user.email = :email

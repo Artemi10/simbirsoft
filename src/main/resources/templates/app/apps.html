@@ -42,6 +42,10 @@
                                th:href="@{/apps/{appId}/delete(appId=${app.id()})}">
                                 <i class="material-icons prefix apps__list__table__app__icon">delete</i>
                             </a>
+                            <a class="apps__list__table__app__action hidden"
+                               th:href="@{/app/{appId}/stat/months/current(appId=${app.id()})}">
+                                <i class="material-icons prefix apps__list__table__app__icon">show_chart</i>
+                            </a>
                         </p>
                         <p class="apps__list__table__app__text__time" th:text="${app.creationTime()}"></p>
                     </div>

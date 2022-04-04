@@ -15,15 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
     private final EventService eventService;
 
-    @GetMapping("/{appId}/events")
-    public String showAppEvents(@PathVariable long appId, Authentication authentication, Model model){
-        var email = ((SecureUser) authentication.getPrincipal()).email();
-        var events = eventService.findAppEvents(appId, email);
-        model.addAttribute("appId", appId);
-        model.addAttribute("events", events);
-        return "event/events";
-    }
-
     @PostMapping("/event")
     public String addAppEvent(@ModelAttribute EventRequestDTO requestBody, Authentication authentication){
         try {

@@ -4,9 +4,12 @@ import com.example.simbirsoft.entity.App;
 import com.example.simbirsoft.entity.Event;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.repository.EventRepository;
+import com.example.simbirsoft.repository.stats.StatsRepository;
 import com.example.simbirsoft.service.application.AppService;
 import com.example.simbirsoft.transfer.event.EventRequestDTO;
 import com.example.simbirsoft.transfer.event.EventResponseDTO;
+import com.example.simbirsoft.transfer.stat.StatRequestDTO;
+import com.example.simbirsoft.transfer.stat.StatResponseDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

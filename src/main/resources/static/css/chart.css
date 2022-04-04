@@ -1,0 +1,14 @@
+.chart__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 64px);
+    width: 100vw;
+    margin: 0 auto;
+}
+.chart{
+    max-width: 500px;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}

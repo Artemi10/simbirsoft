@@ -21,7 +21,31 @@
 <body>
 <div th:insert="~{components/menu :: content}"></div>
 <div class="chart__container">
+    <i class="material-icons small setting-icon">settings</i>
     <canvas id="myChart" width="500" height="500" class="chart"></canvas>
+</div>
+<div class="stats__form__container">
+    <form class="stats__form" th:action="@{/app/2/stat}" method="GET" >
+        <i class="material-icons stats__form__icon_close small">close</i>
+        <div class="input-field stats__form__field">
+            <select name="type">
+                <option value="months" selected>По месяцам</option>
+                <option value="hours">По часам</option>
+                <option value="days">По дням</option>
+            </select>
+            <label>Вид</label>
+        </div>
+        <div class="input-field stats__form__field">
+            <input id="from" type="text" class="datepicker" name="from">
+            <label for="from" data-error="wrong" data-success="right">Начало</label>
+        </div>
+        <div class="input-field stats__form__field">
+            <input id="to" type="text" class="datepicker" name="to">
+            <label for="to" data-error="wrong" data-success="right">Конец</label>
+        </div>
+        <button class="stats__form__btn waves-effect waves-light btn-large deep-purple lighten-2"
+                type="submit">Применить</button>
+    </form>
 </div>
 <script type="text/javascript" th:inline="javascript">
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -47,7 +71,7 @@
             }
         }
     });
-
 </script>
+<script type="text/javascript" th:src="@{/js/chart.js}"></script>
 </body>
 </html>

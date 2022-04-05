@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @AllArgsConstructor
-@Service("monthStatService")
+@Service("months")
 public class MonthStatService implements StatService {
     private final AppService appService;
     private final StatsRepository statsRepository;

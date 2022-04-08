@@ -7,6 +7,7 @@
 * [General Info](#general-info)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [Testing](#testing)
 * [Deployment](#deployment)
 * [Contact](#contact)
 
@@ -30,9 +31,18 @@
 ## Features
 - Create account by filling out sign up form.
 - Log in to user account with/without remember me token.
+- Log in to user account with Google account by OAuth.
 - Password recovery by sending resetting letter to user email.
 - Log out from application.
 - CRUD operations with applications.
+- Add events to users applications.
+- Create events dashboards by hours, days and months.
+
+## Testing
+- Code Coverage.
+
+![CodeCoverage](screenshots/coverage.png "Code coverage")
+
 
 ## Deployment
 - Download git project

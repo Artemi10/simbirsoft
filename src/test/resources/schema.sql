@@ -1,4 +1,4 @@
-create table users
+create table if not exists users
 (
     id          bigint
         constraint users_pk primary key,
@@ -8,7 +8,7 @@ create table users
     reset_token varchar(128)
 );
 
-create table applications
+create table if not exists applications
 (
     id            bigint
         constraint applications_pk primary key,
@@ -20,16 +20,16 @@ create table applications
             on delete cascade
 );
 
-create unique index applications_id_uindex
+create unique index if not exists applications_id_uindex
     on applications (id);
 
-create unique index users_email_uindex
+create unique index if not exists users_email_uindex
     on users (email);
 
-create unique index users_id_uindex
+create unique index if not exists users_id_uindex
     on users (id);
 
-create table events
+create table if not exists events
 (
     id                bigint
         constraint events_pk primary key,
@@ -42,5 +42,5 @@ create table events
             on delete cascade
 );
 
-create unique index events_id_uindex
+create unique index if not exists events_id_uindex
     on events (id);

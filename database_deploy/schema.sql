@@ -1,4 +1,4 @@
-create table users
+create table if not exists users
 (
     id          bigserial
         constraint users_pk
@@ -12,7 +12,7 @@ create table users
 alter table users
     owner to postgres;
 
-create table applications
+create table if not exists applications
 (
     id            bigserial
         constraint applications_pk
@@ -28,16 +28,16 @@ create table applications
 alter table applications
     owner to postgres;
 
-create unique index applications_id_uindex
+create unique index if not exists applications_id_uindex
     on applications (id);
 
-create unique index users_email_uindex
+create unique index if not exists users_email_uindex
     on users (email);
 
-create unique index users_id_uindex
+create unique index if not exists users_id_uindex
     on users (id);
 
-create table events
+create table if not exists events
 (
     id                bigserial
         constraint events_pk
@@ -54,5 +54,5 @@ create table events
 alter table events
     owner to postgres;
 
-create unique index events_id_uindex
+create unique index if not exists events_id_uindex
     on events (id);

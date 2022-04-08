@@ -3,9 +3,7 @@ package com.example.simbirsoft.controller;
 import com.example.simbirsoft.configuration.TestSecureUserDetailsService;
 import com.example.simbirsoft.entity.Event;
 import com.example.simbirsoft.exception.EntityException;
-import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.event.EventService;
-import com.example.simbirsoft.service.user.UserService;
 import com.example.simbirsoft.transfer.event.EventResponseDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,8 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -111,18 +108,6 @@ class EventControllerInTest {
         public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
         }
-    }
-
-    @Test
-    @WithUserDetails(
-            value = "lyah.artem10@mail.ru",
-            userDetailsServiceBeanName = "testUserDetailsService"
-    )
-    public void showAppEvents_If_User_Is_Authenticated() throws Exception {
-        var request = MockMvcRequestBuilders
-                .get("/app/1/events");
-        mvc.perform(request)
-                .andExpect(status().isOk());
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.example.simbirsoft.service.event;
 import com.example.simbirsoft.entity.Event;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.repository.EventRepository;
-import com.example.simbirsoft.repository.stats.StatsRepositoryImpl;
 import com.example.simbirsoft.service.application.AppService;
 import com.example.simbirsoft.transfer.event.EventRequestDTO;
 import org.junit.jupiter.api.BeforeEach;

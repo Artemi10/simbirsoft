@@ -1,6 +1,5 @@
 package com.example.simbirsoft.controller;
 
-import com.example.simbirsoft.configuration.TestSecureUserDetailsService;
 import com.example.simbirsoft.exception.EmailException;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.service.email.MessageService;

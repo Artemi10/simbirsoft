@@ -1,6 +1,7 @@
 package com.example.simbirsoft.controller;
 
 import com.example.simbirsoft.configuration.security.details.SecureUser;
+import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.service.stat.StatService;
 import com.example.simbirsoft.transfer.stat.StatRequestDTO;
 import com.example.simbirsoft.transfer.stat.StatResponseDTO;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.List;
@@ -35,14 +35,17 @@ public class StatController {
                 var requestDTO = new StatRequestDTO(email, from, to);
                 stats = statServices.containsKey(type) ?
                         statServices.get(type).createStats(appId, requestDTO) : Collections.emptyList();
-            } catch (ParseException exception) {
-                stats = statServices.containsKey(type) ?
-                        statServices.get(type).createStats(appId, email) : Collections.emptyList();
+            } catch (ParseException | EntityException exception) {
+                stats = Collections.emptyList();
             }
         }
         else {
-            stats = statServices.containsKey(type) ?
-                    statServices.get(type).createStats(appId, email) : Collections.emptyList();
+            try {
+                stats = statServices.containsKey(type) ?
+                        statServices.get(type).createStats(appId, email) : Collections.emptyList();
+            } catch (EntityException exception) {
+                    stats = Collections.emptyList();
+            }
         }
 
         model.addAttribute("appId", appId);

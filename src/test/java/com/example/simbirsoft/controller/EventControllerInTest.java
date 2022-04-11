@@ -129,24 +129,22 @@ class EventControllerInTest {
     )
     public void addAppEvent_If_User_Is_Authenticated() throws Exception {
         var request = MockMvcRequestBuilders
-                .post("/app/event")
+                .post("/app/1/event")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("appId","1")
                 .param("name","Log In Event")
                 .param("extraInformation", "Extra Information");
         mvc.perform(request)
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/apps"));
+                .andExpect(redirectedUrl("/app/1/stat?type=months&from=&to="));
     }
 
     @Test
     public void redirect_addAppEvent_If_User_Is_Not_Authenticated() throws Exception {
         var request = MockMvcRequestBuilders
-                .post("/app/event")
+                .post("/app/1/event")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("appId","1")
                 .param("name","Log In Event")
                 .param("extraInformation", "Extra Information");
         mvc.perform(request)
@@ -159,16 +157,14 @@ class EventControllerInTest {
             value = "lyah.artem10@mail.ru",
             userDetailsServiceBeanName = "testUserDetailsService"
     )
-    public void redirect_addAppEvent_If_User_Does_Not_Have_App() throws Exception {
+    public void show_Error_When_addAppEvent_If_User_Does_Not_Have_App() throws Exception {
         var request = MockMvcRequestBuilders
-                .post("/app/event")
+                .post("/app/2/event")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("appId","2")
                 .param("name","Log In Event")
                 .param("extraInformation", "Extra Information");
         mvc.perform(request)
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(status().isOk());
     }
 }

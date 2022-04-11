@@ -53,8 +53,9 @@
 > git checkout volga-it
 - Create Google OAuth client ID credentials
 > https://console.cloud.google.com/apis/credentials
-- Add to docker-compose.yml file Client ID and Client Secret
+- Add to docker-compose.yml file generated Client ID
 > sed -i 's|- GOOGLE_CLIENT_ID=${client_id}|- GOOGLE_CLIENT_ID=YOUR_CLIENT_ID|' docker-compose.yml
+- Add to docker-compose.yml file generated Client Secret
 > sed -i 's|- GOOGLE_CLIENT_SECRET=${client_secret}|- GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET|' docker-compose.yml
 - Start docker engine
 - Run docker-compose command

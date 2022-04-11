@@ -8,6 +8,6 @@ import java.util.List;
 
 @Service
 public interface EventService {
-    void addEvent(EventRequestDTO requestDTO, String email);
+    void addEvent(long appIp, EventRequestDTO requestDTO, String email);
     List<EventResponseDTO> findAppEvents(long appId, String email);
 }

@@ -4,7 +4,7 @@ import com.example.simbirsoft.exception.ValidatorException;
 
 import static com.example.simbirsoft.transfer.Validator.*;
 
-public record EventRequestDTO(long appId, String name, String extraInformation) {
+public record EventRequestDTO(String name, String extraInformation) {
 
     public void check() {
         checkName();

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', showSelect);
 
 document.addEventListener('DOMContentLoaded', showDatePickers);
 
-document.querySelector('.setting-icon')
+document.querySelector('.nav__icon_setting')
     .addEventListener('click', openSettings);
 
 document.querySelector('.stats__form__icon_close')

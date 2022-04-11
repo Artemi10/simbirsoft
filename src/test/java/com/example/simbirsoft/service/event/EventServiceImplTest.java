@@ -94,22 +94,22 @@ public class EventServiceImplTest {
 
     @Test
     public void addEvent_When_App_Exists(){
-        var requestBody = new EventRequestDTO(1, "New event", "Description");
-        assertDoesNotThrow(() -> eventService.addEvent(requestBody, "lyah.artem10@mail.ru"));
+        var requestBody = new EventRequestDTO("New event", "Description");
+        assertDoesNotThrow(() -> eventService.addEvent(1, requestBody, "lyah.artem10@mail.ru"));
         verify(eventRepository, times(1))
                 .save(argThat(event -> event.getName().equals(requestBody.name())
                                 && event.getExtraInformation().equals(requestBody.extraInformation())
-                                && event.getApp().getId() == requestBody.appId()));
+                                && event.getApp().getId() == 1));
         verify(appService, times(1))
                 .isUserApp(1, "lyah.artem10@mail.ru");
     }
 
     @Test
     public void throw_Exception_When_Add_Event_To_Nonexistent_App(){
-        var requestBody = new EventRequestDTO(2, "New event", "Description");
+        var requestBody = new EventRequestDTO("New event", "Description");
         var exception = assertThrows(
                 EntityException.class,
-                () -> eventService.addEvent(requestBody, "lyah.artem@mail.ru"));
+                () -> eventService.addEvent(2, requestBody, "lyah.artem@mail.ru"));
         assertEquals("Приложение не найдено", exception.getMessage());
         verify(appService, times(1))
                 .isUserApp(2, "lyah.artem@mail.ru");

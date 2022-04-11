@@ -21,11 +21,16 @@
 <body>
 <div th:insert="~{components/menu :: content}"></div>
 <div class="chart__container">
-    <i class="material-icons small setting-icon">settings</i>
+    <div class="nav">
+        <a th:href="@{/app/{appId}/event(appId=${appId})}">
+            <i class="material-icons small nav__icon_add">add</i>
+        </a>
+        <i class="material-icons small nav__icon_setting">settings</i>
+    </div>
     <canvas id="myChart" width="500" height="500" class="chart"></canvas>
 </div>
 <div class="stats__form__container">
-    <form class="stats__form" th:action="@{/app/2/stat}" method="GET" >
+    <form class="stats__form" th:action="@{/app/{appId}/stat(appId=${appId})}" method="GET" >
         <i class="material-icons stats__form__icon_close small">close</i>
         <div class="input-field stats__form__field">
             <select name="type">

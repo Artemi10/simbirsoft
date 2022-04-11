@@ -4,6 +4,7 @@ import com.example.simbirsoft.configuration.TestSecureUserDetailsService;
 import com.example.simbirsoft.entity.Event;
 import com.example.simbirsoft.exception.EntityException;
 import com.example.simbirsoft.service.event.EventService;
+import com.example.simbirsoft.transfer.event.EventRequestDTO;
 import com.example.simbirsoft.transfer.event.EventResponseDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -87,12 +88,14 @@ class EventControllerInTest {
         when(eventService.findAppEvents(eq(2L), eq("lyah.artem10@mail.ru")))
                 .thenReturn(new ArrayList<>());
         doNothing().when(eventService).addEvent(
-                argThat(body -> body.appId() == 1),
+                eq(1L),
+                any(EventRequestDTO.class),
                 eq("lyah.artem10@mail.ru")
         );
         doThrow(new EntityException("Приложение не найдено"))
                 .when(eventService).addEvent(
-                        argThat(body -> body.appId() == 2),
+                        eq(2L),
+                        any(EventRequestDTO.class),
                         eq("lyah.artem10@mail.ru")
                 );
     }

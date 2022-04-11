@@ -24,12 +24,12 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
 
     @Override
-    public void addEvent(EventRequestDTO requestDTO, String email) {
+    public void addEvent(long appId, EventRequestDTO requestDTO, String email) {
         requestDTO.check();
-        if (appService.isUserApp(requestDTO.appId(), email)){
+        if (appService.isUserApp(appId, email)){
             var time = new Timestamp(new Date().getTime());
             var app = App.builder()
-                    .id(requestDTO.appId())
+                    .id(appId)
                     .build();
             var event = Event.builder()
                     .name(requestDTO.name())

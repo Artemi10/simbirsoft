@@ -15,14 +15,23 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
     private final EventService eventService;
 
-    @PostMapping("/event")
-    public String addAppEvent(@ModelAttribute EventRequestDTO requestBody, Authentication authentication){
+    @PostMapping("/{appId}/event")
+    public String addAppEvent(@PathVariable long appId, @ModelAttribute EventRequestDTO request,
+                              Authentication authentication, Model model){
         try {
             var email = ((SecureUser) authentication.getPrincipal()).email();
-            eventService.addEvent(requestBody, email);
-            return "redirect:/apps";
+            eventService.addEvent(appId, request, email);
+            return String.format("redirect:/app/%d/stat?type=months&from=&to=", appId);
         } catch (Exception exception){
-            return "redirect:/";
+            model.addAttribute("appId", appId);
+            model.addAttribute("error", exception.getMessage());
+            return "event/create";
         }
+    }
+
+    @GetMapping("/{appId}/event")
+    public String showCreateEventPage(@PathVariable long appId, Model model){
+        model.addAttribute("appId", appId);
+        return "event/create";
     }
 }

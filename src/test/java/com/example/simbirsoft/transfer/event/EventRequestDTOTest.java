@@ -17,21 +17,21 @@ class EventRequestDTOTest {
 
     @Test
     public void throw_Exception_When_Name_Is_Incorrect() {
-        var incorrectDTO = new EventRequestDTO(1, " ", "Description");
+        var incorrectDTO = new EventRequestDTO(" ", "Description");
         var exception = assertThrows(ValidatorException.class, incorrectDTO::check);
         assertEquals("Введено некорректное название события", exception.getMessage());
     }
 
     @Test
     public void throw_Exception_When_Description_Is_Incorrect() {
-        var incorrectDTO = new EventRequestDTO(1, "LogIn Event", " ");
+        var incorrectDTO = new EventRequestDTO("LogIn Event", " ");
         var exception = assertThrows(ValidatorException.class, incorrectDTO::check);
         assertEquals("Поле дополнительная информация не должно быть пустым", exception.getMessage());
     }
 
     @Test
     public void execute_When_DTO_Is_Correct(){
-        var correctDTO = new EventRequestDTO(1, "LogIn Event", "Description");
+        var correctDTO = new EventRequestDTO("LogIn Event", "Description");
         assertDoesNotThrow(correctDTO::check);
     }
 }

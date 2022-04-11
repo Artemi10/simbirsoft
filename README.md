@@ -51,7 +51,7 @@
 > cd ./simbirsoft
 - Chose volga-it branch
 > git checkout volga-it
-- Create Google OAuth client ID credentials
+- Create Google OAuth client ID credentials (Set http://localhost:8080/login/oauth2/code/google as Authorized redirect URIs)
 > https://console.cloud.google.com/apis/credentials
 - Add to docker-compose.yml file generated Client ID
 > sed -i 's|- GOOGLE_CLIENT_ID=${client_id}|- GOOGLE_CLIENT_ID=YOUR_CLIENT_ID|' docker-compose.yml

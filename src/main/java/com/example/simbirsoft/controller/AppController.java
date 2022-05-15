@@ -6,7 +6,6 @@ import com.example.simbirsoft.exception.ValidatorException;
 import com.example.simbirsoft.service.application.AppService;
 import com.example.simbirsoft.transfer.application.AppRequestDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
